@@ -1,0 +1,124 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[left=1cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+
+\title{Fórmulas de Física II}
+\author{Marcos Raúl Gatica - V1.0}
+\date{}
+
+\begin{document}
+	
+	\maketitle
+	
+	\tableofcontents
+	\newpage
+	
+	\section{Unidad 1: Fundamentos de Termología}
+	\renewcommand{\arraystretch}{1.5} 
+	\begin{center}
+		\begin{tabularx}{\textwidth}{|X|X|}
+			\hline
+			\textbf{Descripción} & \textbf{Fórmula} \\ \hline
+			Dilatación térmica lineal & $\Delta L = \alpha L \Delta T$ \\ \hline
+			Dilatación térmica en dos dimensiones & $\Delta A = 2\alpha A \Delta T$ \\ \hline
+			Dilatación térmica en tres dimensiones & $\Delta V = 3 \alpha V \Delta T$ \\ \hline
+			Transferencia de calor & $Q = mc \Delta T$ \\ \hline
+			Transferencia de calor en un calorímetro & $Q_{\text{frío}} + Q_{\text{caliente}} = 0$ \\ \hline
+			Calor por cambio de fase (fusión y congelación) & $Q = mL_f$ \\ \hline
+			Calor por cambio de fase (evaporación y condensación) & $Q = mL_v$ \\ \hline
+			Presión en ampolla a 0°C (TGVC) & $P = {P_0} + \rho g h$ \\ \hline
+			De °C a °K & $K = °C + 273.15$ \\ \hline
+			De °C a °F & $°F = °C \frac{9}{5} + 32$ \\ \hline
+			De °K a °F & $°F = (K - 273.15) \frac{9}{5} + 32$ \\ \hline
+		\end{tabularx}
+	\end{center}
+	
+	\section{Unidad 2: Principios de la Termodinámica}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabularx}{\textwidth}{|X|X|}
+			\hline
+			\textbf{Descripción} & \textbf{Fórmula} \\ \hline
+			Primera Ley de la Termodinámica & $\Delta U = Q - W$ \\ \hline
+			Trabajo en procesos isobáricos & $W = P({V_f} - {V_i})$ \\ \hline
+			Trabajo de un gas ideal & $W = - \int_{V_i}^{V_f} PdV = nRT \ln ( \frac{V_i}{V_f})$ \\ \hline
+			Presión de un gas & $P = \frac{n R T}{V}$ \\ \hline
+			Ley de los gases ideales en términos de moléculas & $\rho V = N k_B T$\\ \hline
+			Relaciones de la ley de los gases ideales si la cantidad de gas es const. & $\frac{{\rho}_1 V_1}{T_1} = \frac{{\rho}_2 V_2}{T_2}$ \\ \hline
+			Ley de los gases ideales en términos de moles & $\rho V = n R T$ \\ \hline
+			Ecuación de Van Der Waals & $[p + a {( \frac{n}{v} )}^2] (V - nb) = n R T$ \\ \hline
+		\end{tabularx}
+	\end{center}
+
+	\section{Unidad 3: Electrostática y Campos Eléctricos}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabularx}{\textwidth}{|X|X|}
+			\hline
+			\textbf{Descripción} & \textbf{Fórmula} \\ \hline
+			Ley de Coulomb & ${\vec{F}} = k \frac{{q_1}{q_2}}{r^2}$ \\ \hline
+			Constante de proporcionalidad K & $k = \frac{1}{4 \pi {\epsilon}_0}$ \\ \hline
+			Permitividad en el vacío ${{\epsilon}_0}$ & $8.85 . 10^{-12} \frac{C^2}{Nm^2}$ \\ \hline
+			Campo eléctrico & ${\vec{E}} = \frac{\vec{F}}{q_0}$ \\ \hline
+			Campo eléctrico en un punto debido a un grupo de cargas puntuales & ${\vec{E}} = k \sum_{}^{i} {\frac{q}{{(r_i)}^2}} {\vec{r_i}}$ \\ \hline
+			Campo vectorial dada unas cargas distribuidas & $\Delta \vec{E} = k \int_{}^{} \frac{dq}{(r_i)^2} \vec{r_i}$ \\ \hline
+			Densidad volumétrica de carga & $\rho = \frac{Q}{vol}$ \\ \hline
+			Densidad superficial de carga & $\sigma = \frac{Q}{A}$ \\ \hline
+			Densidad lineal de carga & $\lambda = \frac{Q}{l}$ \\ \hline
+			Segunda ley de Newton aplicada a campos eléctricos & $\text{aceleración(a)} = \frac{q \vec{E}}{masa(m)}$ \\ \hline
+			Velocidad final de una carga(+) en MRUV horizontal, partiendo del reposo entre dos placas(positivo a negativo) & ${V_f} = \sqrt{ \frac{2q \vec{E} d}{m}}$ \\ \hline
+			Carga negativa entre dos placas (negativo a positivo), simulando una caída libre & $\sum_{} {F_y} = - \frac{e \vec{E}}{m_e}$ \\ \hline
+			Flujo eléctrico que pasa por un plano & ${{\phi}_E} = \vec{E} A cos(\theta)$ \\ \hline
+			Flujo eléctrico de una superficie curva & ${{\phi}_E} = \int_{} \vec{E} \vec{dA}$ \\ \hline
+			Flujo neto a través de una superficie gaussiana & ${{\phi}_E} = \frac{q}{{\epsilon}_0}$ \\ \hline
+			Flujo neto que pasa por el extremo superior de un cilindro que atraviesa un conductor en equilibrio electrostático & ${{\phi}_{E neto}} = \vec{E} A = \frac{\sigma A}{\epsilon_0}$ \\ \hline			
+			\end{tabularx}
+	\end{center}
+
+	\section{Unidad 4: El potencial eléctrico}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabularx}{\textwidth}{|X|X|}
+			\hline
+			\textbf{Definición} & \textbf{Fórmula} \\ \hline
+			Cambio de energía potencial del sistema carga-campo & $\Delta U = {U_B} - {U_A} = -{q_0} \int_{A}^{B} \vec{E} \vec{ds}$ \\ \hline
+			Potencial eléctrico & $V = \frac{U}{q_0}$ \\ \hline
+			Diferencia de potencial & $\Delta V = \frac{\Delta U}{q_0} = - \int_{A}^{B} \vec{E} \vec{ds}$ \\ \hline
+			Diferencia de energía potencial & $\Delta U = {q_0}{\Delta V}$ \\ \hline
+			Diferencia de potencial para un campo eléctrico uniforme & $\Delta V = -{\vec{E}} d$ \\ \hline
+			Diferencia de energía potencial para un campo eléctrico uniforme & $\Delta U = -{q_0} \vec{E} d$ \\ \hline
+			Diferencia de potencial para una partícula que se mueve de A a B, cuyo vector de desplazamiento $\vec{s}$ no es paralelo a las líneas de campo & $\Delta V = - \vec{E} \vec{s}$ \\ \hline
+			Diferencia de energía potencial para el sistema carga-campo anterior & $\Delta U = -{q_0}{\vec{E}}{\vec{s}}$ \\ \hline
+			Diferencia de potencial entre dos puntos A y B, afectados por un campo eléctrico generado por una carga a una distancia $\vec{r}$ & $\Delta V = \frac{1}{4 \pi \epsilon_0} ({\frac{q}{r_B}} - {\frac{q}{r_A}})$ \\ \hline
+			Potencial eléctrico en un punto P de n cargas & $V = k \sum_{1}^{n} \frac{q_i}{r_i}$ \\ \hline
+			Potencial eléctrico debido a distribuciones de carga continuas & $V = k \int_{} \frac{dp}{r}$ \\ \hline		
+		\end{tabularx}
+	\end{center}
+
+	\section{Unidad 5: Propiedades eléctricas de la materia y capacidad eléctrica}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{center}
+		\begin{tabularx}{\textwidth}{|X|X|}
+			\hline
+			\textbf{Definición} & \textbf{Fórmula} \\ \hline
+			Capacitancia & $C = \frac{C}{\Delta V}$ \\ \hline
+			Campo eléctrico entre las placas del capacitor & $\vec{E} = \frac{\sigma}{\epsilon_0} = \frac{Q}{{\epsilon_0}A}$ \\ \hline
+			Diferencia de potencial entre las placas del capacitor & $\Delta V = \frac{Qd}{{\epsilon_0}A}$ \\ \hline
+			Capacitancia de un condensador de placas paralelas & $C = {\epsilon_0}{\frac{A}{d}}$ \\ \hline
+			Carga total de capacitores en paralelo & ${Q_{\textbf{total}}} = \sum_{1}^{n} {Q_i}$ \\ \hline
+			Capacitancia total de capacitores en paralelo & ${C_{\textbf{total}}} = \sum_{1}^{n} {C_i}$ \\ \hline
+			Capacitancia total de capacitores en serie & ${\frac{1}{C_{total}}} = \sum_{1}^{n} {\frac{1}{C_i}}$ \\ \hline
+			Trabajo para cargar un capacitor desde q = 0 a q = Q & $W = \int_{0}^{Q} \frac{q}{C}dq = \frac{Q^2}{2C}$ \\ \hline
+			Energía potencial almacenada del capacitor con carga & $U = \frac{1}{2} C{(\Delta V)^2}$ \\ \hline
+			Diferencia de potencial de un capacitor con dieléctrico & $\Delta V = \frac{\Delta {V_{\textbf{VACÍO}}}}{k}$ \\ \hline
+			Capacitancia de un capacitor con dieléctrico & $C = {k_e}{\frac{\epsilon_0 A}{d}}$ \\ \hline
+			Campo eléctrico de un capacitor con dieléctrico & $\vec{E} = \frac{\vec{E_{\textbf{VACÍO}}}}{k_e}$ \\ \hline
+			\end{tabularx}
+	\end{center}
+
+\end{document}
