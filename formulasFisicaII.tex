@@ -6,6 +6,14 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage[left=1cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[R]{pág. \thepage}
+\setlength{\footskip}{20pt}
 
 \title{Fórmulas de Física II}
 \author{Marcos Raúl Gatica - V1.0}
@@ -14,7 +22,7 @@
 \begin{document}
 	
 	\maketitle
-	
+	\thispagestyle{fancy}
 	\tableofcontents
 	\newpage
 	
@@ -121,4 +129,43 @@
 			\end{tabularx}
 	\end{center}
 
+\section{Unidad 6: La corriente eléctrica}
+\renewcommand{\arraystretch}{1.5}
+\begin{center}
+	\begin{tabularx}{\textwidth}{|X|X|}
+		\hline
+		\textbf{Definición} & \textbf{Fórmula} \\ \hline
+		Corriente instantánea & $I = \frac{dQ}{dt}$ \\ \hline
+		Modelo microscópico de la corriente & $I = \frac{\Delta Q}{\Delta t} = nAq v_d$ \\ \hline
+		Densidad de corriente & $j = \frac{I}{A} = nq v_d$ \\ \hline
+		Ley de OHM & $\vec{E} = \frac{V}{l}$ \\ \hline
+		Resistividad & $\rho = \frac{1}{\sigma} = \frac{R A }{l}$ \\ \hline
+		Variación de la resistividad con respecto a la temperatura & $\alpha = \frac{1}{\rho_0} tang(\theta)$ \\ \hline
+		Resistividad ante el cambio de temperatura & $\rho = \rho_0 [1 + \alpha \Delta T]$ \\ \hline
+		Variación de la energía potencial eléctrica & $\Delta U = \Delta V Q$ \\ \hline
+		Potencia eléctrica & $P = I \Delta V$ \\ \hline
+		Ley de Joule & $\Delta V = R I$ \newline $P = I^2 R$ \newline $I = \frac{\Delta V}{R}$ \newline $P = \frac{{\Delta V}^2}{R}$ \\ \hline
+		\end{tabularx}
+\end{center}
+
+\section{Unidad 7: El circuito eléctrico}
+\renewcommand{\arraystretch}{1.5}
+\begin{center}
+	\begin{tabularx}{\textwidth}{|X|X|}
+		\hline
+		\textbf{Definición} & \textbf{Fórmula} \\ \hline
+		Fuerza electromotriz (FEM) & $\epsilon = \frac{\Delta W}{Q}$ \\ \hline
+		Potencial eléctrico entre dos puntos de un circuito & ${V_{ab}} = \epsilon - {r_i}I$ \\ \hline
+		FEM de un circuito bajo carga R y resistencia interna & $\epsilon = I R + {r_i}I$ \\ \hline
+		Resistencias en serie & $\Delta V = I {R_{eq}} \newline {R_{eq}} = \sum R_i$ \\ \hline
+		Resistencias en paralelo & ${I_n} = \frac{\Delta V}{R_n} \newline \frac {1}{R_{eq}} = \sum_{} \frac{1}{R_i}$ \\ \hline
+		Leyes de Kirchhoff & $\textbf{Ley de nodos}: \sum {I_i} = 0 \newline \newline \textbf{Ley de mallas}: \sum {V_i} = 0$ \\ \hline
+		Circuito RC: Constante de tiempo para cargar un condensador& $\tau = RC = I_0 e^{-n} \textbf{ para n = 1,2...5}$ \\ \hline
+		Circuito RC: Energía de salida de  la batería para cuando el cap. está cargado & $Q \epsilon = C {\epsilon}^2$ \\ \hline
+		Corriente inicial de un circuito & ${I_0} = \frac{Q}{RC}$ \\ \hline
+		Puente de Wheatstone & ${V_{ab}} = {V_{ac}}{i_1} \newline N = {i_2} P \newline V_{bd} = V_{cd} {i_1} \newline M = {i_2} X \newline X = P \frac{M}{N} $ \\ \hline
+		Potenciometro & $V_{cb} = i{R_{cb}} \newline V_{cb} = \epsilon_2 \newline \epsilon_2 = i{R_{cb}}$ \\ \hline
+		
+	\end{tabularx}
+\end{center}
 \end{document}
