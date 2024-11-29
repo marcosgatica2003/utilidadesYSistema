@@ -1,0 +1,47 @@
+stage0: 
+    - configurar apt (al parecer añade el repositorio de Raspberry con su llave pública)
+    - instalación y configuración de locales (para la región y hora)
+    - configuración del firmware de segunda etapa
+
+stage1:
+    - Al parecer configura el tty y cosas del boot
+    - Configura cosas del sistema, como el fstab, una configuración del bash, servicios y el root
+    - Hostname y red básica (posiblemente para la instalación de paquetes de inicio).
+    - Instalación de raspi-config
+
+stage2:
+    - Instalación del raspi-copies-and-files
+    - Configuración de teclado.
+    - Configuraciones del tty.
+    - Instalación de cifs-utils.
+    - Configuración del swap y dispositivos de almacenamiento.
+    - Instalación y paquetes firmware, wpasupplicant raspberrypi-net-mods dhcpcd5 net-tools
+    - Configuración de wpa_supplicant.
+    - Aceptación del contrato de raspberrypi.
+
+stage3: 
+    - Instalación de chromium
+    - Paquetes: gstreamer1.0-x gstreamer1.0-omx gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav qpdfview gtk2-engines alsa-utils desktop-base git omxplayer raspberrypi-artwork policykit-1 gvfs rfkill chromium-browser rpi-chromium-mods gldriver-test fonts-droid-fallback fonts-liberation2 obconf arandr
+    - Más paquetes: xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo mousepad lxde lxtask menu-xdg zenity xdg-utils gvfs-backends gvfs-fuse lightdm gnome-themes-standard-data gnome-icon-theme 
+
+stage4: 
+    - Paquetes de python y demás: python python3-pygame python-pygame python-tk python3 python3-tk thonny python3-pgzero python-serial python3-serial python-picamera python3-picamera debian-reference-en dillo raspberrypi-net-mods raspberrypi-ui-mods python-pip python3-pip python3-numpy pypy alacarte rc-gui sense-hat tree libgl1-mesa-dri libgles1 libgles2-mesa xcompmgr geany piclone wiringpi pigpio python-pigpio python3-pigpio raspi-gpio python3-rpi.gpio python-spidev python3-spidev python-twython python3-twython  python-smbus python3-smbus  python-flask python3-flask pprompt  piwiz rp-prefapps ffmpeg vlc
+
+    - Más paquetes: pi-package realvnc-vnc-server
+    - Más paquetes de python: python-automationhat python3-automationhat python-blinkt python3-blinkt python-cap1xxx python3-cap1xxx python-drumhat python3-drumhat python-envirophat python3-envirophat python-explorerhat python3-explorerhat python-fourletterphat python3-fourletterphat python-microdotphat python3-microdotphat python-mote python3-mote python-motephat python3-motephat python-phatbeat python3-phatbeat python-pianohat python3-pianohat  python-piglow python3-piglow  python-rainbowhat python3-rainbowhat python-scrollphat python3-scrollphat python-scrollphathd python3-scrollphathd python-sn3218 python3-sn3218 python-skywriter python3-skywriter python-touchphat python3-touchphat python-buttonshim python3-buttonshim python-unicornhathd  python3-unicornhathd python-pantilthat python3-pantilthat 
+    - Paquetes relacionados a idiomas: hunspell-en-gd hyphen-en-gd wamerican wbritish
+    - Paquetes relacionas a impresoras: cups system-config-printer
+stage5: 
+    - Instalación de libreoffice
+    - Instalación de paquetes: mu-editor sonic-pi scratch nuscratch scratch3 smartsim minecraft-pi python-minecraftpi python-picraft python3-picraft python-sense-emu sense-emu-tools python-sense-emu-doc wolfram-engine claws-mail greenfoot-unbundled bluej nodered realvnc-vnc-viewer python-games code-the-classics
+   
+PASO 1: CAMBIAR IMAGEN DE BOOTEO E INSTALACIÓN
+----------------------------------------------
+
+1) Viendo el borescope_config, se ejecutan las etapas 0, 1 y 2 de pi-gen. 
+2) Se ejecuta el script "build.sh", si el sistema en el que se ejecuta es Debian o algún derivado de este, para el resto se usa docker. Al parecer, la configuración del docker no está hecha y es genérica.
+3) Hay un problema con el borescope_config: pi-gen solo busca y toma un archivo de configuración llamado "config". 
+4) La configuración toma la ubicación de Uruguay, hay que corregir eso.
+5) Problemas con dependencias: falta xxd y bsdtab pasó a libarchive-tools 
+
+
