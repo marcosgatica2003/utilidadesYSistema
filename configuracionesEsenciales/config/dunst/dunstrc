@@ -1,0 +1,33 @@
+[global]
+# Tiempo de vida de la notificación en segundos
+timeout = 8
+# Posición en la pantalla
+position = bottom-right
+# Tamaño del texto
+font = Hack Nerd Font 10
+
+frame_width = 2
+frame_color = "#651201"
+corner_radius = 8
+separator_height = 2
+separator_color = "#651201"
+
+width = 300
+height = 100
+offset = 10x10
+
+[urgency_low]
+background = "#131313"  
+foreground = "#FF0000"  
+frame_color = "#651201"      
+
+[urgency_normal]
+background = "#131313"
+foreground = "#FF0000"
+frame_color = "#651201"    
+
+[urgency_critical]
+background = "#131313"
+foreground = "#FF0000"
+frame_color = "#651201"    
+
