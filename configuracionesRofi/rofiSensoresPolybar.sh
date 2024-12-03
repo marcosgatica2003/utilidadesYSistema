@@ -22,5 +22,5 @@ temps_formatted=$(awk -v gpu_temp="$gpu_temp" '
 ' <<< "$sensors_output")
 
 # Mostrar las temperaturas en rofi
-echo "$temps_formatted" | rofi -dmenu -font "Hack Nerd Font Bold 11" -p "         TEMPERATURAS" -theme $HOME/Scripts/configuracionesRofi/temaTemperaturas.rasi -xoffset 800 -yoffset 350 -no-show-icons -disable-history 
+echo "$temps_formatted" | rofi -dmenu -font "Hack Nerd Font Bold 11" -p "         TEMPERATURAS" -theme $HOME/Repositorios/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi -xoffset 800 -yoffset 350 -no-show-icons -disable-history 
 

@@ -1,13 +1,13 @@
-alias actualizarSistema='/home/marcosgatica/Scripts/actualizarSistema.sh'
-alias reiniciarPolybar='/home/marcosgatica/Scripts/reiniciarPolybar.sh'
+alias actualizarSistema='$HOME/Repositorios/utilidadesYSistema/scripts/actualizarSistema.sh'
+alias reiniciarPolybar='$HOME/Repositorios/utilidadesYSistema/scripts/reiniciarPolybar.sh'
 alias ll='ls -l --block-size=MB'
 alias la='ls -a'
 alias l='ls -cf'
 alias ls='ls --color=auto -h --group-directories-first'
 alias cls="cd $HOME && clear"
-alias encenderBluetooth='/home/marcosgatica/Scripts/encenderBluetooth.sh'
+alias encenderBluetooth='$HOME/Repositorios/utilidadesYSistema/scripts/encenderBluetooth.sh'
 alias limpiarPacman='sudo pacman -Rns $(pacman -Qdteq) && yay -Rns $(yay -Qdtq) && sudo pacman -Scc && echo "--- Pacman limpio. ---"' 
-alias brillo='xrandr --output eDP --brightness'
+alias brillo='$HOME/Repositorios/utilidadesYSistema/scripts/brillo.sh'
 alias encenderSsh='sudo systemctl start sshd && sudo systemctl enable sshd && echo "Ssh encendido."'
 alias pacman='sudo pacman'
 alias nano='vim'
@@ -15,8 +15,10 @@ alias arduino-ide='/home/marcosgatica/Repositorios/arduino-ide/arduino-ide'
 alias facu='cd ~/Escritorio/facultadUTN'
 alias fanLOW='sudo fancontrol /etc/fancontrol1'
 alias fanHIGH='sudo fancontrol /etc/fancontrol'
-alias cambiarTema='$HOME/Scripts/cambiarTema.sh'
+alias cambiarTema='$HOME/Repositorios/utilidadesYSistema/scripts/cambiarTema.sh'
 alias clima="curl wttr.in/Córdoba_Argentina"
 alias vimrc="vim ~/.vimrc"
-alias descargarYT="python3 $HOME/Scripts/codigosPython/descargarYT.py"
+alias descargarYT="python3 $HOME/Repositorios/utilidadesYSistema/scripts/codigosPython/descargarYT.py"
+alias camaraPython='python3 $HOME/Repositorios/utilidadesYSistema/scripts/codigosPython/camaraOpenCvBasico.py'
 alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
+alias apt='sudo apt'
