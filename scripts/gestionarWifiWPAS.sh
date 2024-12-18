@@ -7,7 +7,7 @@ redesDisponibles() {
     echo "----------------------------------------------"
     echo "              Redes disponibles               "
     echo -e "----------------------------------------------\n"
-    sudo iwlist $INTERFACE scan | grep -E "ESSID|Signal"
+    iwlist $INTERFACE scan | grep -E "ESSID|Signal"
     sleep 2
     echo "----------------------------------------------"
 
@@ -19,12 +19,12 @@ agregarNuevaRed() {
     read -p "SSID: " SSID
     read -p "Contraseña: " PASSWORD
 
-    if [[ ! -d "/home/$USER/.config/redes" ]]; then
-        echo "Directorio redes creado en $USER (home)/.config/redes"
-        mkdir -p "/home/$USER/.config/redes"
+    if [[ ! -d "/etc/redes" ]]; then
+        echo "Directorio redes creado en /etc/redes"
+        mkdir -p "/etc/redes"
     fi
 
-    if [ -f "/home/$USER/.config/redes/$SSID.conf" ]; then
+    if [ -f "/etc/redes/$SSID.conf" ]; then
         read -p "La red '$SSID' existe, pisar? (1 - Sí / 2 - No): " OPCION
 
         if [[ "$OPCION" == 2 ]]; then
@@ -36,7 +36,7 @@ agregarNuevaRed() {
 
     fi
     
-    sudo wpa_passphrase "$SSID" "$PASSWORD" > /home/$USER/.config/redes/"$SSID".conf
+    wpa_passphrase "$SSID" "$PASSWORD" > /etc/redes/"$SSID".conf
     echo -e "--- Red $SSID agregada ---\n"
     echo -e "---> Enter para continuar <---"
     read
@@ -44,7 +44,17 @@ agregarNuevaRed() {
 
 conectarWifi() {
     clear
-    local redDir="/home/$USER/.config/redes"
+    systemctl start wpa_supplicant.service
+    ip link set "$INTERFACE" up
+    
+    local redDir="/etc/redes"
+
+    if [[ ! -d "/etc/redes" ]]; then
+        echo "Directorio redes creado en /etc/redes"
+        mkdir -p "/etc/redes"
+    fi
+
+
     if [ ! -d "$redDir" ]; then
         echo "No hay redes conocidas."
         return 1
@@ -53,8 +63,8 @@ conectarWifi() {
     for redDir in "$redDir"/*.conf; do
         local SSID=$(basename "$redDir".conf)
         echo "Intentando conectar a la red: $SSID..."
-        sudo wpa_supplicant -B -i "$INTERFACE" -c "$redDir" > /dev/null 2>&1
-        sudo dhclient "$INTERFACE" > /dev/null 2>&1
+        wpa_supplicant -B -i "$INTERFACE" -c "$redDir" > /dev/null 2>&1
+        dhclient "$INTERFACE" > /dev/null 2>&1
         sleep 3
 
         if ping -q -c 1 -W 3 google.com > /dev/null 2>&1; then
@@ -62,7 +72,7 @@ conectarWifi() {
             return 0
         else
             echo "No se pudo con $SSID"
-            sudo killall wpa_supplicant > /dev/null 2>&1
+            killall wpa_supplicant > /dev/null 2>&1
         fi
     done
 
@@ -72,7 +82,7 @@ conectarWifi() {
 
 redesConocidas() {
 
-    local redDir="/home/$USER/.config/redes"
+    local redDir="/etc/redes"
     if [ ! -d "$redDir" ]; then
         echo -e "\t Sin redes, boludo."
         read
@@ -117,8 +127,8 @@ notMel() {
 }
 
 desconectarWifi() {
-    sudo killall wpa_supplicant
-    sudo killall dhclient
+    killall wpa_supplicant
+    killall dhclient
     echo -e "----------------------------------------------"
     echo    "     Apagando wpa_supplicant y dhclient...    "
     echo -e "----------------------------------------------"
