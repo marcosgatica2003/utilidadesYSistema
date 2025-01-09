@@ -1,18 +1,18 @@
-alias actualizarSistema='$HOME/Repositorios/utilidadesYSistema/scripts/actualizarSistema.sh'
+alias actualizarSistema='$HOME/.config/utilidadesYSistema/scripts/actualizarSistema.sh'
 alias ll='ls -l --block-size=MB'
 alias la='ls -a'
 alias l='ls -cf'
 alias ls='ls --color=auto -h --group-directories-first'
 alias cls="cd $HOME && clear"
-alias encenderBluetooth='$HOME/Repositorios/utilidadesYSistema/scripts/encenderBluetooth.sh'
-alias brillo='$HOME/Repositorios/utilidadesYSistema/scripts/brillo.sh'
+alias encenderBluetooth='$HOME/.config/utilidadesYSistema/scripts/encenderBluetooth.sh'
+alias brillo='$HOME/.config/utilidadesYSistema/scripts/brillo.sh'
 alias encenderSsh='sudo systemctl start sshd && sudo systemctl enable sshd && echo "Ssh encendido."'
 alias pacman='sudo pacman'
-alias cambiarTema='$HOME/Repositorios/utilidadesYSistema/scripts/cambiarTema.sh'
+alias cambiarTema='$HOME/.config/utilidadesYSistema/scripts/cambiarTema.sh'
 alias clima="curl wttr.in/Córdoba_Argentina"
 alias vimrc="vim ~/.vimrc"
-alias descargarYT="python3 $HOME/Repositorios/utilidadesYSistema/scripts/codigosPython/descargarYT.py"
-alias camaraPython='python3 $HOME/Repositorios/utilidadesYSistema/scripts/codigosPython/camaraOpenCvBasico.py'
+alias descargarYT="python3 $HOME/.config/utilidadesYSistema/scripts/codigosPython/descargarYT.py"
+alias camaraPython='python3 $HOME/.config/utilidadesYSistema/scripts/codigosPython/camaraOpenCvBasico.py'
 alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
 alias apt='sudo apt'
 alias cd..2='cd ../../'

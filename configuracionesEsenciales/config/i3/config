@@ -6,7 +6,7 @@ tiling_drag modifier titlebar
 
 bindsym $mod+Alt_L exec alacritty -e tmux
 
-bindsym $mod+d exec $HOME/Scripts/configuracionesRofi/abrirRofi.sh
+bindsym $mod+d exec $HOME/.config/utilidadesYSistema/configuracionesRofi/abrirRofi.sh
 bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+s layout stacking
