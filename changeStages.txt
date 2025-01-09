@@ -1,0 +1,284 @@
+stage0: 
+    - configurar apt (al parecer añade el repositorio de Raspberry con su llave pública)
+    - instalación y configuración de locales (para la región y hora)
+    - configuración del firmware de segunda etapa
+
+stage1:
+    - Al parecer configura el tty y cosas del boot
+    - Configura cosas del sistema, como el fstab, una configuración del bash, servicios y el root
+    - Hostname y red básica (posiblemente para la instalación de paquetes de inicio).
+    - Instalación de raspi-config
+
+stage2:
+    - Instalación del raspi-copies-and-files
+    - Configuración de teclado.
+    - Configuraciones del tty.
+    - Instalación de cifs-utils.
+    - Configuración del swap y dispositivos de almacenamiento.
+    - Instalación y paquetes firmware, wpasupplicant raspberrypi-net-mods dhcpcd5 net-tools
+    - Configuración de wpa_supplicant.
+    - Aceptación del contrato de raspberrypi.
+
+stage3: 
+    - Instalación de chromium
+    - Paquetes: gstreamer1.0-x gstreamer1.0-omx gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav qpdfview gtk2-engines alsa-utils desktop-base git omxplayer raspberrypi-artwork policykit-1 gvfs rfkill chromium-browser rpi-chromium-mods gldriver-test fonts-droid-fallback fonts-liberation2 obconf arandr
+    - Más paquetes: xserver-xorg-video-fbdev xserver-xorg xinit xserver-xorg-video-fbturbo mousepad lxde lxtask menu-xdg zenity xdg-utils gvfs-backends gvfs-fuse lightdm gnome-themes-standard-data gnome-icon-theme 
+
+stage4: 
+    - Paquetes de python y demás: python python3-pygame python-pygame python-tk python3 python3-tk thonny python3-pgzero python-serial python3-serial python-picamera python3-picamera debian-reference-en dillo raspberrypi-net-mods raspberrypi-ui-mods python-pip python3-pip python3-numpy pypy alacarte rc-gui sense-hat tree libgl1-mesa-dri libgles1 libgles2-mesa xcompmgr geany piclone wiringpi pigpio python-pigpio python3-pigpio raspi-gpio python3-rpi.gpio python-spidev python3-spidev python-twython python3-twython  python-smbus python3-smbus  python-flask python3-flask pprompt  piwiz rp-prefapps ffmpeg vlc
+
+    - Más paquetes: pi-package realvnc-vnc-server
+    - Más paquetes de python: python-automationhat python3-automationhat python-blinkt python3-blinkt python-cap1xxx python3-cap1xxx python-drumhat python3-drumhat python-envirophat python3-envirophat python-explorerhat python3-explorerhat python-fourletterphat python3-fourletterphat python-microdotphat python3-microdotphat python-mote python3-mote python-motephat python3-motephat python-phatbeat python3-phatbeat python-pianohat python3-pianohat  python-piglow python3-piglow  python-rainbowhat python3-rainbowhat python-scrollphat python3-scrollphat python-scrollphathd python3-scrollphathd python-sn3218 python3-sn3218 python-skywriter python3-skywriter python-touchphat python3-touchphat python-buttonshim python3-buttonshim python-unicornhathd  python3-unicornhathd python-pantilthat python3-pantilthat 
+    - Paquetes relacionados a idiomas: hunspell-en-gd hyphen-en-gd wamerican wbritish
+    - Paquetes relacionas a impresoras: cups system-config-printer
+stage5: 
+    - Instalación de libreoffice
+    - Instalación de paquetes: mu-editor sonic-pi scratch nuscratch scratch3 smartsim minecraft-pi python-minecraftpi python-picraft python3-picraft python-sense-emu sense-emu-tools python-sense-emu-doc wolfram-engine claws-mail greenfoot-unbundled bluej nodered realvnc-vnc-viewer python-games code-the-classics
+   
+PASO 1: CAMBIAR IMAGEN DE BOOTEO E INSTALACIÓN
+----------------------------------------------
+
+1) Viendo el borescope_config, se ejecutan las etapas 0, 1 y 2 de pi-gen. 
+2) Se ejecuta el script "build.sh", si el sistema en el que se ejecuta es Debian o algún derivado de este, para el resto se usa docker. Al parecer, la configuración del docker no está hecha y es genérica.
+3) Hay un problema con el borescope_config: pi-gen solo busca y toma un archivo de configuración llamado "config". 
+4) La configuración toma la ubicación de Uruguay, hay que corregir eso.
+5) Problemas con dependencias: falta xxd y bsdtab pasó a libarchive-tools 
+
+RESULTADO: Una imagen del sistema Debian 9 bastante básica y sin contraseña para el root (no entra igual). No probé con el usuario pi.
+
+PASO 2: MODIFICAR EL CONFIG
+---------------------------
+
+1) Cambiar a Debian 12: según la documentación de pi-gen (el README.md del repositorio), con RELEASE="bookworm" pareciera funcionar.
+2) Para agregar un usuario, según la documentación, hay que meterle al config:
+    FIRST_USER_NAME="nombre de usuario"
+    FIRST_USER_PASS="contraseña del usuario"
+3) Configuraciones del sistema (fuente: el mismo README.md del repositorio):
+    KEYBOARD_LAYOUT="Latin American"
+    LOCALE_DEFAULT="es_AR.UTF-8"
+    TIMEZONE_DEFAULT="America/Argentina/Cordoba"
+    KEYBOARD_KEYMAP="la"
+4) Agregue la etapa 3 en el config para tener al menos un entorno gráfico y uno para el inicio de sesión.
+
+RESULTADO: No hay entorno gráfico aún y al parecer se necesita de la etapa 4 para un entorno completo. Hay problemas con el locale y la versión de Debian más reciente soportada es la bullseye para ese script.
+
+PASO 3: SOLUCIONAR PROBLEMAS
+----------------------------
+
+1) Se actualizó el script pi-gen para soportar Debian 12, lo que se hizo fue clonar el repositorio actual de pi-gen y actualizar el borescope_confing con lo siguiente:
+    IMG_NAME='Raspbian-Borescope'
+    RELEASE=bookworm
+
+    FIRST_USER_NAME=borescope
+    FIRST_USER_PASS=borescope
+    DISABLE_FIRST_BOOT_USER_RENAME=1
+
+    KEYBOARD_LAYOUT='Español (latinoamericano)'
+    KEYBOARD_KEYMAP='latam'
+
+    TIMEZONE_DEFAULT='America/Argentina/Buenos_Aires'
+    LOCALE_DEFAULT='es_AR.UTF-8'
+
+    ENABLE_SSH=1
+    STAGE_LIST="stage0 stage1 stage2 stage3 stage4"
+    USE_QCOW2=0
+    WPA_COUNTRY=GB 
+
+Los cambios se hicieron tomando el cuanta el tipo de dato mencionado indirectamente en el README.md. Se habilitó la etapa 4 para cargar un escritorio lxde. 
+
+2) Se volvió a borescope_config en vez de simplemente config, ya que el build.sh puede leer el archivo con el parámetro "-c".
+
+RESULTADO: Un entorno de escritorio que al menos funciona, queda limpiarlo. Los parámetros del borescope_config parecen funcionar (no he verificado el SSH).
+
+PASO 4: LIMPIAR EL ENTORNO LXDE
+-------------------------------
+
+1) Los paquetes que se instalan considerados como "extras", se encuentran en la etapa 4, donde también se carga el entorno de escritorio.
+
+De stage4/00-install-packages se ha removido:
+
+    De 00-packages: 
+        python3-pygame
+        python3-tk
+        thonny
+        rpi-imager
+        python3-pgzero 
+        python3-serial 
+        debian-reference-en 
+        dillo 
+        raspberrypi-ui-mods 
+        sense-hat 
+        geany
+        python3-twython
+        python3-flask
+        rp-prefapps
+        alacarte
+        vlc
+        rpi-imager
+        labwc
+        meson
+        ninja-build
+        openocd
+        squeekboard
+        piclon
+
+    De 00-packages-nr:
+        realvnc-vnc-server
+
+    De 02-packages:
+        Todo el contenido, el cual consiste:
+            hunspell-en-gb
+            hyphen-en-gb
+            wamerican
+            wbritish
+
+De 05-print-support:
+    Resumidamente: todo (eliminando el soporte para impresoras).
+
+2) Hay cosas de la etapa 3 que se pueden quitar:
+
+    De stage3/00-install-packages/00-packages
+        evince
+        chromium
+        rpi-chromium-mods
+        libwidevincecdm0
+        gldriver-test
+        obiconf
+    
+    De stage3/00-install-packages/00-packages-nr:
+        mousepad
+        eom
+        gnome-themes-extra-data
+
+RESULTADO: No se hizo la imagen, el error fue "E: No se ha podido localizar el paquete prompt" 
+
+SOLUCIÓN: Incluiré algunos paquetes que fueron removidos:
+    1) Primera pasada:
+        Thonny
+        Dillo
+        vlc
+        squeekboard
+    ESTADO: FUNCIONA
+
+    2) 2da pasada:
+        python3-pygame
+        python3-pgzero
+        python3-serial
+        debian-reference-en 
+    ESTADO: FUNCIONA
+
+    3) 3ra pasada:
+        geany
+        python3-twython
+        python3-tk 
+        python3-flask
+    ESTADO: FUNCIONA
+    
+    4) 4ta pasada:
+        tree
+        alacarte
+        xcompmgr
+        ffmpeg
+        python3-numpy
+        labwc
+        NOTA: En la etapa 4, hay directorios de configuración para alacarte, xcompmgr y labwc. Fueron removidos también.
+
+    ESTADO: FUNCIONA
+    
+    5) 5ta pasada
+        A este punto el sistema está bastante limpio pero quise quitar rp-prefapps
+        RESULTADO: poquito inestable, por el momento dejaré ese paquete.
+
+    6) 6ta pasada
+        Intentaré que el sistema funcione sin rpi-imager
+        RESULTADO: esto sí ha funcionado correctamente.
+
+    RESUMEN DE LOS PAQUETES QUITADOS(stage4/00-install-packages):
+        Thonny
+        Dillo
+        vlc
+        squeekboard
+        python3-pygame
+        python3-pgzero
+        python3-serial
+        debian-reference-en 
+        geany
+        python3-twython
+        python3-tk 
+        python3-flask
+        tree
+        alacarte
+        xcompmgr
+        ffmpeg
+        python3-numpy
+        labwc
+        rpi-imager
+
+PASO 5: AGREGAR UNA IMAGEN DE INICIO DE SISTEMA (TIPO WINCHOT)
+--------------------------------------------------------------
+
+1) He agregado el directorio de configuración de plymount a la etapa 4 con el nombre "02-configure-plymouth", contiene:
+    - directorio "files", que a su vez contiene la imagen de inicio "splash.png"
+    - un script 00-run.sh con lo sigueinte:
+        #!/bin/bash -e
+        NEW_SPLASH="${STAGE_DIR}/02-configure-plymouth/files/splash.png"
+        if [[ ! -f "$NEW_SPLASH" ]]; then
+            echo "Error: '$NEW_SPLASH' no es un archivo"
+            exit 1
+        fi
+        echo "Archivo de destino: ${ROOTFS_DIR}/usr/share/plymouth/themes/pix/splash.png"
+
+        rm -f "${ROOTFS_DIR}/usr/share/plymouth/themes/pix/splash.png"
+
+        install -m 644 "$NEW_SPLASH" "${ROOTFS_DIR}/usr/share/plymouth/themes/pix/splash.png"
+
+        on_chroot << EOF
+        plymouth-set-default-theme pix
+        update-initramfs -u
+        EOF
+    
+2) He agregado el "disable_splash=1" en stage1/00-boot-files/files/config.txt.
+
+RESULTADO: funciona correctamente.
+
+PASO 6: ARREGLAR EL gitlab-ci.yml
+---------------------------------
+
+Actualmente el gitlab-ci.yml contiene esto:
+
+    variables:
+    IMG_NAME: "Raspbian-Borescope"
+    ROOTFS_DIR: "rootfs"
+    BASE_ROOTFS_DIR: "work/*-${IMG_NAME}"
+
+.base_image: &base_image
+  image: debian:buster
+  before_script:    
+    - apt-get update
+    - apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip dosfstools bsdtar libcap2-bin grep rsync xz-utils file git curl bc qemu-utils kpartx xxd kmod -y
+  tags:
+    - gitlab-org-docker
+  artifacts:
+      when: always
+      expire_in: 1 day
+      paths:
+        - deploy/*.zip
+        - deploy/md5sum*
+
+
+stages:
+  - build-image
+
+
+build_image:
+  <<: *base_image
+  stage: build-image
+  script:
+      - ./loop.sh
+      - ./build.sh -c borescope_config
+      - md5sum deploy/*.zip > deploy/md5sum_${BOARD}
+
+1) Arreglar dependencias:
+    bsdtar -> libarchive-tools
+            
+
