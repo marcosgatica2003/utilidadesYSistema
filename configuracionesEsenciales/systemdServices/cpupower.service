@@ -1,0 +1,12 @@
+[Unit]
+Description=Configura el gobernador de CPU con cpupower
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cpupower frequency-set --governor powersave --min 400MHz --max 1.00GHz
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+

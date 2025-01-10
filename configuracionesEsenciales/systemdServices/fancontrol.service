@@ -1,0 +1,12 @@
+[Unit]
+Description=Control de ventiladores con fancontrol
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/fancontrol /etc/fancontrol
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
