@@ -6,7 +6,7 @@ function imprimirMensaje {
 
 if [ -f /etc/debian_version ]; then
 	sudo apt update
-	sudo apt full-upgrade
+	sudo apt full-upgrade --autoremove
 	imprimirMensaje
 elif [ -f /etc/arch-release ]; then
 	sudo pacman -Syyu
