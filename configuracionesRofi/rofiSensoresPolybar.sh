@@ -17,10 +17,10 @@ temps_formatted=$(awk -v gpu_temp="$gpu_temp" '
     }
     END {
         # Añadir la temperatura de la GPU al final
-        print "GPU +", gpu_temp "°C"
+        print "GPU +"gpu_temp"°C"
     }
 ' <<< "$sensors_output")
 
 # Mostrar las temperaturas en rofi
-echo "$temps_formatted" | rofi -dmenu -font "Hack Nerd Font Bold 11" -p "         TEMPERATURAS" -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi -xoffset 800 -yoffset 350 -no-show-icons -disable-history 
+echo "$temps_formatted" | rofi -dmenu -font "Hack Nerd Font Bold 11" -p "         TEMPERATURAS" -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi -yoffset 350 -xoffset 260 -no-show-icons -disable-history 
 

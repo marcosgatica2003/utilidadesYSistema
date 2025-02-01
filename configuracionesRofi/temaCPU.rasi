@@ -5,7 +5,7 @@
  *******************************************************************************/
 
 * {
-    selected-normal-foreground:  rgba (0, 0, 0, 1);
+    selected-normal-foreground:  @background;
 //    foreground:                  rgba ( 193, 193, 193, 100 % );
     foreground:                  rgba ( 255, 58, 58, 1 );
 
@@ -14,19 +14,19 @@
     alternate-normal-background: @background;
 
     red:                         rgba ( 220, 50, 47, 1 );
-    selected-urgent-foreground:  rgba ( 255, 24, 68, 1 );
+    selected-urgent-foreground:  rgba ( 232, 24, 68, 1 );
     blue:                        rgba ( 38, 139, 210, 1 );
-    urgent-foreground:           rgba ( 255, 24, 68, 1 );
+    urgent-foreground:           rgba ( 232, 24, 68, 1 );
     alternate-urgent-background: @background;
     active-foreground:           rgba (128, 203, 196, 1 );
     lightbg:                     rgba ( 238, 232, 213, 1 );
     background:                  rgba ( 0, 0, 0, 1 );
-    bordercolor:                 rgba ( 255, 0, 0, 1 );
+    bordercolor:                 rgba ( 0, 0, 0, 1 );
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
     lightfg:                     rgba ( 88, 104, 117, 1 );
     selected-normal-background:  rgba (200, 0, 0, 1);
-    border-color:                rgba (255, 0, 0, 1);
+    border-color:                rgba (0, 0, 0, 1);
     spacing:                     1;
     separatorcolor:              @selected-normal-background;
     urgent-background:           @background;
@@ -46,8 +46,8 @@ window {
     background-color: @background;
     border:           1.5;
     padding:          1;
-    width:            300px;
-    height:           300px;
+    width:            225px;
+    height:           200px;
     margin:           1;
 }
 mainbox {
