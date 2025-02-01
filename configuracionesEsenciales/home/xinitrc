@@ -1,0 +1,12 @@
+#!/bin/bash
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=bspwm
+export QT_QPA_PLATFORMTHEME=qt5ct
+feh --bg-scale ~/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/phobos.jpg &
+polybar 1 &
+dunst &
+picom --config ~/.config/picom/picom.conf &
+xrandr --output eDP-1 --brightness 0.6 &
+xset s off -dpms &
+exec bspwm
+

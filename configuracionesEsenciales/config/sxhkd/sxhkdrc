@@ -1,0 +1,31 @@
+#
+# wm independent hotkeys
+#
+super + shift + space
+    bspc node -t tiled
+
+super + space
+    bspc node -t floating
+
+# terminal emulator
+super + Return
+	alacritty -e tmux
+
+# program launcher
+super + d
+	$HOME/.config/utilidadesYSistema/configuracionesRofi/abrirRofi.sh
+
+# close and kill
+super + shift + q
+	bspc node -c
+
+# alternate between the tiled and monocle layout
+super + w
+	bspc desktop -l next
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
