@@ -1,6 +1,7 @@
 alias actualizarSistema='$HOME/.config/utilidadesYSistema/scripts/actualizarSistema.sh'
 alias ll='ls -l --block-size=MB'
 alias la='ls -a'
+alias steam-x11='startx /usr/bin/i3 -- :1 vt$(fgconsole) && steam-runtime'
 alias l='ls -cf'
 alias ls='ls --color=auto -h --group-directories-first'
 alias cls="cd $HOME && clear"
@@ -17,3 +18,4 @@ alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
 alias apt='sudo apt'
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
+alias capturarPantalla='$HOME/.config/utilidadesYSistema/scripts/capturarWayland.sh'
