@@ -1,8 +1,19 @@
 #!/bin/bash
 
 function imprimirMensaje {
-	echo "---- Sistema actualizado! ----"
+    echo "------------------------------"
+	echo "|    Sistema actualizado!    |"
+    echo "------------------------------"
+
 }
+
+if [[ "$1" == "--help" ]]; then
+    echo -e "Script para actualizar el sistema operativo GNU/Linux. Simplemente ejecútelo sin argumentos.\n"
+    echo -e "Sistemas soportados:\n \t - Debian y derivados. \n \t - Arch Linux y derivados. \n"
+    echo "Autor: Marcos Raúl Gatica (saludos a LOLON y LULUN)"
+    exit 0
+fi
+
 
 if [ -f /etc/debian_version ]; then
 	sudo apt update
