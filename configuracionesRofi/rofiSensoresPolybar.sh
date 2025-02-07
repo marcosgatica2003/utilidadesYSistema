@@ -21,7 +21,7 @@ else
         }
         END {
             # Añadir la temperatura de la GPU al final
-            print "GPU +"gpu_temp"°C"
+            print "GPU + '$gpuTemp' °C"
         }
     ' <<< "$sensorsOutput")
 
