@@ -2,7 +2,7 @@
 export XDG_SESSION_TYPE=x11
 export XDG_CURRENT_DESKTOP=bspwm
 export QT_QPA_PLATFORMTHEME=qt5ct
-feh --bg-scale ~/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/phobos.jpg &
+feh --bg-scale ~/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/uac.jpg &
 polybar 1 &
 dunst &
 picom --config ~/.config/picom/picom.conf &
