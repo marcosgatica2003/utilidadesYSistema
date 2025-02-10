@@ -1,32 +1,36 @@
-#!/bin/bash
-if grep -q "Raspberry Pi" /proc/device-tree/model; then
+#!/bin/bash -e
+
+detectarResolucion() {
+    width=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f 1)
+    height=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f 2)
+
+    XOffSet=$((width - width*60/100))
+    YOffSet=$((height - height*132/100))
+}
+
+detectarResolucion
+
+if [ -f "/sys/firmware/devicetree/base/model" ] && grep -qi "raspberry pi" /sys/firmware/devicetree/base/model; then
     cpuTemp=$(awk '{print $1/1000}' /sys/class/thermal/thermal_zone0/temp)
-    tempsFormatted="ARM +$cpuTemp °C"
+    tempsFormatted=" ARM +$cpuTemp °C"
 
 else
-    # Obtener todas las temperaturas usando sensors
     sensorsOutput=$(sensors)
 
-    # Obtener la temperatura de la GPU NVIDIA
-    gpuTemp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
+    gpuTemp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader 2>/dev/null | awk '{print $1 "°C"}')
 
-    # Procesar las temperaturas relevantes de una sola vez
-    tempsFormatted=$(awk -v gpuTemp="$gpuTemp" '
-        /temp1|Composite|Tctl|edge/ {
-            sensor=$1
-            temp=$2
-            # Eliminar el carácter ':' si existe
-            gsub(/:/, "", sensor)
-            print sensor, temp
-        }
-        END {
-            # Añadir la temperatura de la GPU al final
-            print "GPU + '$gpuTemp' °C"
-        }
-    ' <<< "$sensorsOutput")
-
+    tempsFormatted=$(echo -e "$sensorsOutput" | awk -v gpuTemp="$gpuTemp" '
+        /temp1/ { icon="  "; print icon "CPU: " $2 }
+        /Tctl|edge/ { icon=" "; print icon "Chipset: " $2 }
+        /Composite/ { icon="  "; print icon "Disco: " $2 }
+    ')
+    
+    if [ -n "$gpuTemp" ]; then 
+        tempsFormatted="$tempsFormatted\n  GPU: $gpuTemp"
+    fi
 fi 
 
-# Mostrar las temperaturas en rofi
-echo "$tempsFormatted" | rofi -dmenu -font "terminus Bold 12" -p "         TEMPERATURAS" -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi -yoffset -260 -xoffset 650 -no-show-icons -disable-history 
-
+echo -e "$tempsFormatted" | rofi -dmenu -font "terminus Bold 12" -p "                 TEMPERATURAS" \
+    -yoffset "$YOffSet" -xoffset "$XOffSet" \
+    -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi \
+    -disable-history
