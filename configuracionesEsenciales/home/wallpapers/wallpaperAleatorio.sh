@@ -1,9 +1,6 @@
 #!/bin/bash
 
-WALLPAPER_DIR=~/Wallpapers
+WALLPAPER_DIR="$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers"
 
-while true; do
-	feh --bg-scale "$(find $WALLPAPER_DIR -type f \( -name "*.jpg" -o -name "*.png" \) | shuf -n 1)"
+feh --bg-scale "$(find $WALLPAPER_DIR -type f \( -iname "*.jpg" -o -iname "*.png" \) | shuf -n 1)"
 
-	sleep 600
-done
