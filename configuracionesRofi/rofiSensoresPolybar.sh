@@ -30,7 +30,7 @@ else
     fi
 fi 
 
-echo -e "$tempsFormatted" | rofi -dmenu -font "terminus Bold 12" -p "                 TEMPERATURAS" \
+echo -e "$tempsFormatted" | rofi -dmenu -font "terminus Bold 12" -p "TEMPERATURAS "  \
     -yoffset "$YOffSet" -xoffset "$XOffSet" \
     -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi \
     -disable-history
