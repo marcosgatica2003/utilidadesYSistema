@@ -5,7 +5,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 $HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/wallpaperAleatorio.sh
 polybar 1 &
 dunst &
-picom --config ~/.config/picom/picom.conf &
+picom --config $HOME/.config/picom/picom.conf &
 xrandr --output eDP-1 --brightness 0.6 &
 xset s off -dpms &
 exec bspwm
