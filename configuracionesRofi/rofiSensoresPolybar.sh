@@ -1,15 +1,5 @@
 #!/bin/bash -e
 
-detectarResolucion() {
-    width=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f 1)
-    height=$(xdpyinfo | awk '/dimensions/{print $2}' | cut -d 'x' -f 2)
-
-    XOffSet=$((width - width*60/100))
-    YOffSet=$((height - height*132/100))
-}
-
-detectarResolucion
-
 if [ -f "/sys/firmware/devicetree/base/model" ] && grep -qi "raspberry pi" /sys/firmware/devicetree/base/model; then
     cpuTemp=$(awk '{print $1/1000}' /sys/class/thermal/thermal_zone0/temp)
     tempsFormatted=" ARM +$cpuTemp °C"
@@ -30,7 +20,5 @@ else
     fi
 fi 
 
-echo -e "$tempsFormatted" | rofi -dmenu -font "terminus Bold 12" -p "TEMPERATURAS "  \
-    -yoffset "$YOffSet" -xoffset "$XOffSet" \
-    -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi \
-    -disable-history
+echo -e "$tempsFormatted" | rofi -dmenu -p "TEMPERATURAS "  \
+    -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi 

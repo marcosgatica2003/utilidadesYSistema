@@ -1,2 +1,3 @@
-#!/bin/bash
-rofi -combi-modi window,drun,ssh -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaEjecutables.rasi -font "Hack Nerd Font 14" -show drun -icon-theme "Papirus" -show-icons -location 2 -xoffset 726 -yoffset 740
+#!/bin/bash -e
+
+rofi -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaEjecutables.rasi -show drun

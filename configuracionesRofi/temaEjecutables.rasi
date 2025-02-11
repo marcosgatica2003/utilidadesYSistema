@@ -5,12 +5,10 @@
  *******************************************************************************/
 
 * {
-    selected-normal-foreground:  rgba (0, 0, 0, 1);
-//    foreground:                  rgba ( 193, 193, 193, 100 % );
-    foreground:                  rgba ( 255, 58, 58, 1 );
+    foreground:                  rgba ( 0, 255, 229, 1 );
+    selected-normal-foreground:  rgba (0, 255, 229, 1);
 
     normal-foreground:           @foreground;
-//    alternate-normal-background: rgba ( 39, 50, 56, 100 % );
     alternate-normal-background: @background;
 
     red:                         rgba ( 220, 50, 47, 1 );
@@ -20,13 +18,13 @@
     alternate-urgent-background: @background;
     active-foreground:           rgba (128, 203, 196, 1 );
     lightbg:                     rgba ( 238, 232, 213, 1 );
-    background:                  rgba ( 0, 0, 0, 1 );
+    background:                  rgba ( 34, 34, 34, 1 );
     bordercolor:                 rgba ( 255, 0, 0, 1 );
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
     lightfg:                     rgba ( 88, 104, 117, 1 );
-    selected-normal-background:  rgba (200, 0, 0, 1);
-    border-color:                rgba (255, 0, 0, 1);
+    selected-normal-background:  rgba (0, 255, 229, 0.1);
+    border-color:                rgba (0, 255, 229, 1);
     spacing:                     1;
     separatorcolor:              @selected-normal-background;
     urgent-background:           @background;
@@ -36,7 +34,7 @@
     alternate-active-foreground: @selected-normal-background;
     active-background:           @selected-normal-background;
     selected-active-background:  @selected-normal-background;
-
+    
     selected-active-foreground:  rgba (255, 255, 255, 1.0);
     alternate-active-background: rgba (50, 50, 50, 1.0);
     active-background:           @selected-normal-background;
@@ -44,16 +42,33 @@
 }
 window {
     background-color: @background;
-    border:           1.5;
+    location:   northwest;
+    border:           0;
     padding:          7;
+    bw:               1;
     width:            450px;
     height:           300px;
-    margin:           0;
-    x:                0;
-    y:                50;
+    margin:           0px;
+    orientation:      horizontal;
 }
+configuration {
+    drun {
+        display-name: " ";
+    }
+    font: "Hack Nerd Font Bold 14";
+    show-icons: true;
+    yoffset:    40;
+    xoffset:    40;
+    modes:  [ combi ];
+    combi-modes:    [ window, drun, run ];
+}
+element-icon {
+    size: 23px; 
+    padding: 0px;
+}
+
 mainbox {
-    border:  0;
+    border:  0px;
     padding: 0;
 }
 message {
@@ -65,7 +80,7 @@ textbox {
     text-color: @foreground;
 }
 listview {
-    fixed-height: 0;
+    fixed-height: 1;
     border:       2px dash 0px 0px ;
     border-color: @separatorcolor;
     spacing:      2px ;
@@ -120,7 +135,7 @@ scrollbar {
     width:        4px ;
     border:       0;
     handle-width: 8px ;
-    padding:      0;
+    padding:      1;
 }
 mode-switcher {
     border:       2px dash 0px 0px ;
@@ -131,7 +146,7 @@ button.selected {
     text-color:       @selected-normal-foreground;
 }
 inputbar {
-    spacing:    0;
+    spacing:    1;
     text-color: @normal-foreground;
     padding:    1px ;
 }
@@ -153,6 +168,6 @@ inputbar {
 textbox-prompt-colon {
     expand:     false;
     str:        ":";
-    margin:     0px 0.3em 0em 0em ;
+    margin:     0px 0.5em 0em 0em ;
     text-color: @normal-foreground;
 }
