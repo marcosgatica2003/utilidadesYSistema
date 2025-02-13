@@ -6,4 +6,4 @@ nombreRutaGuardado="$directorio/$nombreArchivo"
 export nombreRutaGuardado
 
 maim -s --quality 10 | tee >(xclip -selection clipboard -t image/png) > "$nombreRutaGuardado"
-python3 $HOME/.config/utilidadesYSistema/scripts/codigosPython/interfazCapturarPantalla.py
+$HOME/.config/utilidadesYSistema/capturadorDePantallas/dist/lolonCaptura
