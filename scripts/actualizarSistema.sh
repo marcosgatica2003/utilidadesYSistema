@@ -20,8 +20,8 @@ if [ -f /etc/debian_version ]; then
 	sudo apt full-upgrade --autoremove
 	imprimirMensaje
 elif [ -f /etc/arch-release ]; then
-	sudo pacman -Syyu
-	yay --aur -Syyu
+	sudo pacman -Syyuu
+	yay --aur -Syyuu
 	imprimirMensaje
 else
 	echo "Sistema no soportado"
