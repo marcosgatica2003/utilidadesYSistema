@@ -48,7 +48,7 @@ class confirmarCaptura(QDialog):
             directorio = os.path.dirname(rutaArchivo)
             nombreArchivo = os.path.basename(rutaArchivo)
             self.enviarNotificacion(
-                "Captura guardada",
+                "Mel ha guardado la imagen",
                 f"Captura {nombreArchivo} guardado en {directorio}"
             )
         self.done(0)
