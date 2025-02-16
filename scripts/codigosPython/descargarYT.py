@@ -1,24 +1,3 @@
-# import os
-# from pytube import YouTube
-
-# def download(link):
-#     yt = YouTube(link)
-#     yt = yt.streams.get_highest_resolution()
-#     directorioActual = os.getcwd()
-
-#     try:
-#         yt.download(output_path = directorioActual)
-
-#     except:
-#         print("Error con la descarga!")
-
-#     print("Hecho")
-
-# if __name__ == "__main__":
-#     link = input("Link: ")
-#     download(link)
-
-
 import os
 import yt_dlp
 import argparse
