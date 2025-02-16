@@ -1,8 +1,4 @@
 alias actualizarSistema='$HOME/.config/utilidadesYSistema/scripts/actualizarSistema.sh'
-alias ll='ls -l --block-size=MB'
-alias la='ls -a'
-alias l='ls -cf'
-alias ls='ls --color=auto -h --group-directories-first'
 alias cls="cd $HOME && clear"
 alias encenderBluetooth='$HOME/.config/utilidadesYSistema/scripts/encenderBluetooth.sh'
 alias brillo='$HOME/.config/utilidadesYSistema/scripts/brillo.sh'
@@ -18,3 +14,25 @@ alias apt='sudo apt'
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
 alias cambiarWallpaper=$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/wallpaperAleatorio.sh
+
+if command -v lsd &> /dev/null; then
+    alias ll='lsd -l'
+    alias la='lsd -a'
+    alias ls='lsd --group-dirs first --icon always --color auto'
+    
+    cd() {
+        builtin cd "$@" 
+        lsd --group-dirs first --icon always --color auto
+    }
+else
+    alias ll='ls -l --block-size=MB'
+    alias la='ls -a'
+    alias l='ls -cf'
+    alias ls='ls --color=auto -h --group-directories-first'
+    
+    cd() {
+        builtin cd "$@"
+         ls --color=auto
+    }
+fi
+
