@@ -1,2 +1,0 @@
-polybar-msg cmd restart
-
