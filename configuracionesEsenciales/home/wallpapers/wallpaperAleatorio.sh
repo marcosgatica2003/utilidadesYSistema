@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -e
 
 WALLPAPER_DIR="$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers"
 
-feh --bg-scale "$(find $WALLPAPER_DIR -type f \( -iname "*.jpg" -o -iname "*.png" \) | shuf -n 1)"
+feh --bg-scale "$(find $WALLPAPER_DIR -type f \( -iname "*.png" \) | shuf -n 1)"
 
