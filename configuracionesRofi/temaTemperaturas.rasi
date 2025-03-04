@@ -55,8 +55,8 @@ prompt {
 configuration {
     font: "Hack Nerd Font Bold 12";
     show-icons: true;
-    yoffset:    40;
-    xoffset:    -5;
+    yoffset:    50;
+    xoffset:    -160;
     disable-history:    true;
 }
 

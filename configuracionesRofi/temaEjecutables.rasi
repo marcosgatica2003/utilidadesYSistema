@@ -42,7 +42,7 @@
 }
 window {
     background-color: @background;
-    location:   northwest;
+    location:   northeast;
     border:           0;
     padding:          7;
     bw:               1;
@@ -57,8 +57,8 @@ configuration {
     }
     font: "Hack Nerd Font Bold 14";
     show-icons: true;
-    yoffset:    40;
-    xoffset:    40;
+    yoffset:    45;
+    xoffset:    -15;
     modes:  [ combi ];
     combi-modes:    [ window, drun, run ];
 }
