@@ -1,12 +1,16 @@
 #!/bin/bash
+
+killall polybar
 export XDG_SESSION_TYPE=x11
 export XDG_CURRENT_DESKTOP=bspwm
 export QT_QPA_PLATFORMTHEME=qt5ct
-$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/wallpaperAleatorio.sh
-polybar 1 &
+
+$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/wallpaperAleatorio.sh &
 dunst &
 picom --config $HOME/.config/picom/picom.conf &
+
 xrandr --output eDP-1 --brightness 0.6 &
 xset s off -dpms &
+polybar &
 exec bspwm
 
