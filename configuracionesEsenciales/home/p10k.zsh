@@ -21,16 +21,18 @@
 
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
-  typeset -g POWERLEVEL9K_MODE=nerdfont-v3
+  # typeset -g POWERLEVEL9K_MODE=nerdfont-v3
   typeset -g POWERLEVEL9K_ICON_PADDING=none
+  typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+  typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
   typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT=
 
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%51F╭─'
-  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%51F├─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%51F╰─'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%196F╭─'
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%196F├─'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%196F╰─'
 
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=''
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=''
@@ -73,8 +75,8 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=232
-  typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=7
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=255
+  typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=124
   # Custom icon.
   typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='󰣇'
 
@@ -103,7 +105,7 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=235
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=238
   # Default current directory foreground color.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=254
   # If directory is too long, shorten some of its segments to the shortest possible unique
