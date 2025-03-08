@@ -9,6 +9,10 @@ origin = top-right
 frame_width = 2
 corner_radius = 10
 
+[play_sound]
+summary = "*"
+script = $HOME/.config/dunst/soundNotify.sh
+
 [urgency_low]
 background = "#222222"
 foreground = "#FF0000"

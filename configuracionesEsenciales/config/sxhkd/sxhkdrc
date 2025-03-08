@@ -15,9 +15,20 @@ super + Return
 super + d
 	$HOME/.config/utilidadesYSistema/configuracionesRofi/abrirRofi.sh
 
+super + t
+    $HOME/.config/utilidadesYSistema/configuracionesRofi/rofiSensoresPolybar.sh
+
 # close and kill
 super + shift + q
 	bspc node -c
+
+# Capturar pantalla
+super + Tab
+    $HOME/gaticonTools/capturadorDePantallas/capturarPantallaX11.sh
+
+# Cambiar foco
+super + alt + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
 
 # alternate between the tiled and monocle layout
 super + w
