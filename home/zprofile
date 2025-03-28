@@ -1,0 +1,5 @@
+#Esto ejecuta startx al toque dps de iniciar sesión desde tty
+if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    source $HOME/.variablesDeEntorno/lsColors
+    startx
+fi
