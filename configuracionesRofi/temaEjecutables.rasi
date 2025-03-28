@@ -5,7 +5,7 @@
  *******************************************************************************/
 
 * {
-    foreground:                  rgba ( 0, 255, 229, 1 );
+    foreground:                  rgba ( 255, 64, 64, 1 );
     selected-normal-foreground:  rgba (0, 255, 229, 1);
 
     normal-foreground:           @foreground;
@@ -55,7 +55,7 @@ configuration {
     drun {
         display-name: " ";
     }
-    font: "Hack Nerd Font Bold 14";
+    font: "JetBrainsMono Nerd Font Bold 16";
     show-icons: true;
     yoffset:    45;
     xoffset:    -15;
@@ -64,7 +64,7 @@ configuration {
 }
 element-icon {
     size: 23px; 
-    padding: 0px;
+    padding: 2px;
 }
 
 mainbox {
@@ -83,13 +83,13 @@ listview {
     fixed-height: 1;
     border:       2px dash 0px 0px ;
     border-color: @separatorcolor;
-    spacing:      2px ;
+    spacing:      1px ;
     scrollbar:    true;
-    padding:      2px 0px 0px ;
+    padding:      0px 0px 0px ;
 }
 element {
     border:  0;
-    padding: 1px ;
+    padding: 0px ;
 }
 element-text {
     background-color: inherit;
