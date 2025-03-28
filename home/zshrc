@@ -14,6 +14,7 @@ plugins=(
     zsh-autosuggestions
     tmux
     zsh-navigation-tools
+    zsh-syntax-highlighting
 )
 source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 zstyle ':completion:*' verbose yes
