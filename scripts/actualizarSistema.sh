@@ -1,10 +1,7 @@
 #!/bin/bash
 
 function imprimirMensaje {
-    echo "------------------------------"
-	echo "|    Sistema actualizado!    |"
-    echo "------------------------------"
-
+    figlet "Sistema actualizado!" | lolcat
 }
 
 if [[ "$1" == "--help" ]]; then
@@ -16,7 +13,7 @@ fi
 
 
 if [ -f /etc/debian_version ]; then
-	sudo apt update
+	sudo apt update | lolcat
 	sudo apt full-upgrade --autoremove
 	imprimirMensaje
 elif [ -f /etc/arch-release ]; then

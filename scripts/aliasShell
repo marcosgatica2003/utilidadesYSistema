@@ -7,13 +7,15 @@ alias pacman='sudo pacman'
 alias cambiarTema='$HOME/.config/utilidadesYSistema/scripts/cambiarTema.sh'
 alias clima="curl wttr.in/Córdoba_Argentina"
 alias vimrc="vim ~/.vimrc"
-alias descargarYT="python3 $HOME/.config/utilidadesYSistema/scripts/codigosPython/descargarYT.py"
+alias descargarYT="python3 $HOME/gaticonTools/descargarYoutube/descargarYT.py"
 alias camaraPython='python3 $HOME/.config/utilidadesYSistema/scripts/codigosPython/camaraOpenCvBasico.py'
 alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
 alias apt='sudo apt'
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
 alias cambiarWallpaper=$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/wallpaperAleatorio.sh
+alias ff=fastfetch
+alias temps='sensors | grep °C | lolcat'
 
 if command -v lsd &> /dev/null; then
     alias ll='lsd -l'
@@ -36,4 +38,4 @@ else
     }
 fi
 
-alias ff=fastfetch
+alias copiar='xclip -selection clipboard'
