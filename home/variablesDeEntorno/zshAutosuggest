@@ -1,0 +1,4 @@
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5fd7ff,bold"   # Azul claro
+export ZSH_AUTOCOMPLETE_HIGHLIGHT='fg=#ffaf00,bold'       # Naranja
+export ZSH_AUTOCOMPLETE_HIGHLIGHT_SELECTED='fg=#ff005f,bold' # Rosa
+
