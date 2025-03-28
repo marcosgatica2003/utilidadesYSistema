@@ -1,7 +1,9 @@
 [global]
-
-timeout = 8
-font = Hack Nerd Font:style=Bold 12
+notification_limit = 4
+stack_duplicates = true
+hide_duplicate_count = false
+timeout = 3
+font = JetBrainsMono Nerd Font:style=Bold 12
 
 width = 400
 height = (0,300)
@@ -15,19 +17,19 @@ script = $HOME/.config/dunst/soundNotify.sh
 
 [urgency_low]
 background = "#222222"
-foreground = "#FF0000"
-frame_color = "#00FFE5"
-format = " <b>%s</b>\n%b"
+foreground = "#FF4040"
+frame_color = "#FF4040"
+format = "  <b>%s</b>\n%b"
 
 [urgency_normal]
 background = "#222222"
-foreground = "#00FFE5"
-frame_color = "#00FFE5"
-format = " <b>%s</b>\n%b"
+foreground = "#FF4040"
+frame_color = "#FF4040"
+format = "  <b>%s</b>\n%b"
 
 [urgency_critical]
 background = "#222222"
-foreground = "#00FFE5"
-frame_color = "#00FFE5"
-format = " <b>%s</b>\n%b"
+foreground = "#FF4040"
+frame_color = "#FF4040"
+format = "  <b>%s</b>\n%b"
 
