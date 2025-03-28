@@ -9,23 +9,23 @@ mostrarInfo() {
     info=""
 
     if [ -n "$wifiIP" ]; then
-        info+=" WiFi: $wifiIP\n"
+        info+=" \tWiFi: $wifiIP\n"
     else
-        info+=" WiFi: Desconectado\n"
+        info+=" \tWiFi: Desconectado\n"
 
     fi
 
     if [ -n "$ethIP" ]; then
-        info+=" Ethernet: $ethIP\n"
+        info+=" \tEthernet: $ethIP\n"
     else
-        info+=" Ethernet: Desconectado\n"
+        info+=" \tEthernet: Desconectado\n"
     fi
 
     if [ -z "$wifiIP" ] && [ -z "$ethIP" ]; then
-        info=" No tenés internet pibe"
+        info=" \tNo tenés internet pibe"
     fi
 
-    echo -e "$info" | rofi -dmenu -p "Información de las redes" -theme-str 'window {width: 300px; height: 100px;}'
+    echo -e "$info" | rofi -dmenu -p "" -theme $HOME/.config/polybar/scripts/temainfoWifi.rasi
 }
 
 mostrarInfo
