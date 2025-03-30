@@ -1,3 +1,3 @@
 #!/bin/bash -e
 
-rofi -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaEjecutables.rasi -show drun
+rofi -theme $HOME/.config/utilidadesYSistema/dotfiles/rofi/configuracionesRofi/temaEjecutables.rasi -show drun
