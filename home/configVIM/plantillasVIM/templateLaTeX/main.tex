@@ -1,5 +1,11 @@
 \documentclass[a4paper]{article}
 
+\usepackage{colortbl}
+\usepackage{cancel}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[table, xcdraw]{xcolor}
 \usepackage{times}
 \usepackage{tikz}
 \usepackage[margin=0cm]{geometry}
@@ -17,6 +23,7 @@
 \usepackage{caption}
 \usepackage{booktabs}
 \usepackage{amsfonts}
+\usepackage[version=4]{mhchem}
 
 \include{newCommands}
 
@@ -24,9 +31,17 @@
     \include{caratula}
     \include{configContenido}
     \include{indice}
-    \saltoPag
-    \begin{multicols}{2}
-        \include{contenido}
+    \saltoPag%
+    \begin{multicols}{2} 
+        \include{unidad1} 
+        \include{unidad2}
+        \include{unidad3}
+        \include{unidad4}
+        \include{unidad5}
+        \include{unidad6}
+        \include{unidad7}
+        \include{unidad8}
+        \include{unidad9}
     \end{multicols}
 \end{document}
 

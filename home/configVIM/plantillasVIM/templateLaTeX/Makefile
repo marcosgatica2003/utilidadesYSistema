@@ -3,7 +3,7 @@ MAIN = main
 LATEXMK = latexmk -pdf
 VIEWER = zathura
 
-CLEAN_FILES = $(MAIN).pdf $(MAIN).aux $(MAIN).fdb_latexmk $(MAIN).fls $(MAIN).log $(MAIN).toc caratula.aux configContenido.aux contenido.aux indice.aux
+CLEAN_FILES = $(MAIN).aux $(MAIN).fdb_latexmk $(MAIN).fls $(MAIN).log $(MAIN).toc *.aux *.toc *.log
 
 .PHONY: all clean
 
@@ -16,4 +16,7 @@ $(MAIN).pdf: $(MAIN).tex
 
 clean:
 	rm -f $(CLEAN_FILES)
+
+view:
+	$(VIEWER) $(MAIN).pdf
 

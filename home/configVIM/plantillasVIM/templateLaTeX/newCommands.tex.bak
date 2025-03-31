@@ -1,0 +1,13 @@
+\renewcommand{\theenumi}{\Roman{enumi}}
+\newcommand{\longsection}[2]{\section[#1]{\parbox{\columnwidth}{#1}}\ignorespaces}
+\newcommand{\saltoPag}{%
+    \newpage\noindent\thispagestyle{fancy}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width=0.4pt] (8.5cm, -0.5cm) -- (8.5cm, -26cm);
+    \end{tikzpicture}%
+    \ignorespaces%
+}
+\newcommand{\sangria}{\hspace{15pt}%
+\ignorespaces%
+}
+

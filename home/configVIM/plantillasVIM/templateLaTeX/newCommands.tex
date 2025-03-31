@@ -1,4 +1,50 @@
+\renewcommand{\theenumi}{\Roman{enumi}}
 
-\newcommand{\longsection}[2]{\section[#1]{\parbox{\columnwidth}{#1}}}
-\newcommand{\saltoPag}{\newpage\noindent\thispagestyle{fancy}\begin{tikzpicture}[remember picture, overlay]\draw[line width=0.4pt] (8.5cm, -0.5cm) -- (8.5cm, -26cm);\end{tikzpicture}}
+\newcommand{\unMedio}[0]{\frac{1}{2}}
+\newcommand{\inv}[1]{\frac{1}{#1}}
+\newcommand{\recuadrar}[2]{
+    \begin{center}
+        \begin{tabular}{|m{#1}|}
+            \toprule
+            \multicolumn{1}{|c|}{\hspace{5pt}#2\hspace{5pt}} \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+}
+
+\newcommand{\ecuacion}[1]{
+    \begin{center}
+        $#1$
+    \end{center}
+}
+
+\newcommand{\longsection}[2]{%
+    \section[#1]{\parbox{\columnwidth}{#1}}
+}
+
+\newcommand{\saltoPag}[0]{%
+    \newpage\noindent\thispagestyle{fancy}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width=0.4pt] (8.5cm, -0.5cm) -- (8.5cm, -26cm);
+    \end{tikzpicture}%
+    \ignorespaces{}
+}
+
+\newcommand{\midTitle}[2]{%
+    \begin{center}
+        \textcolor{#1}{\underline{#2}} 
+    \end{center}
+}
+
+\newcommand{\imagen}[2]{
+    \begin{center}
+        \includegraphics[width=#1]{#2}
+    \end{center}
+}
+
+\newcommand{\sangria}[0]{\indent\hspace{15pt}{\text{}}}
+
+\newcommand{\longsubsection}[2]{%
+    \subsection[#1]{\parbox{\columnwidth}{#1}}%
+}
 
