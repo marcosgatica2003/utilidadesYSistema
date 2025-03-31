@@ -39,3 +39,10 @@ else
 fi
 
 alias copiar='xclip -selection clipboard'
+alias gstatus='git status'
+alias ga='git add'
+alias gaa='git add .'
+alias gcommit='git commit -m'
+alias gcheckout='git checkout'
+alias gpullo='git pull origin'
+alias gpusho='git push origin'
