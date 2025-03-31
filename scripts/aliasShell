@@ -13,7 +13,7 @@ alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
 alias apt='sudo apt'
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
-alias cambiarWallpaper=$HOME/.config/utilidadesYSistema/configuracionesEsenciales/home/wallpapers/wallpaperAleatorio.sh
+alias cambiarWallpaper=$HOME/.config/utilidadesYSistema/home/wallpapers/wallpaperAleatorio.sh
 alias ff=fastfetch
 alias temps='sensors | grep °C | lolcat'
 
