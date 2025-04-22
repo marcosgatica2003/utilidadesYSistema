@@ -1,38 +1,56 @@
-tmux source-file $HOME/.config/tmux/tmuxZsh.conf 
+tmux source-file $HOME/.config/tmux/tmuxZsh.conf
 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+autoload -Uz vcs_info
+precmd() {
+    vcs_info
+}
+autoload -U compinit; compinit
 
-export ZSH="$HOME/.oh-my-zsh"
+setopt prompt_subst
 
-ZSH_THEME="robbyrussell"
+homePWD() {
+  if [[ "$PWD" == "$HOME" ]]; then
+    echo -n "%K{237}%F{253}[.]%f%k"
+  else
+    echo -n "%K{237}%F{253}[ ${PWD/#$HOME/~}] %f%k"
+  fi
+}
 
-#PLUGINS
-plugins=(
-    git
-    zsh-autosuggestions
-    tmux
-    zsh-navigation-tools
-    zsh-syntax-highlighting
-)
-source $HOME/.oh-my-zsh/custom/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' fzf-search-display true
+gitPromptInfo() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
 
-source $ZSH/oh-my-zsh.sh
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+    local branch="$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --always 2>/dev/null)"
+    local gitStatus=$(git status --porcelain --branch 2>/dev/null)
+    local remoteInfo=""
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    if echo "$gitStatus" | grep -q "^##"; then
+        local ahead=$(echo "$gitStatus" | grep "^##" | grep -o "ahead [0-9]*" | awk '{print $2}')
+        local behind=$(echo "$gitStatus" | grep "^##" | grep -o "behind [0-9]*" | awk '{print $2}')
+        [[ -n "$ahead" ]] && remoteInfo+="⇡ $ahead "
+        [[ -n "$behind" ]] && remoteInfo+="⇣ $behind "
+    fi
 
+    local staged=$(echo "$gitStatus" | grep -E "^[MADRC]" | wc -l)
+    local unstaged=$(echo "$gitStatus" | grep -E "^.[MADRC]" | wc -l)
+    local untracked=$(echo "$gitStatus" | grep -E "^\?\?" | wc -l)
 
-# Cargar los alias
-if [ -f $HOME/.config/utilidadesYSistema/scripts/aliasShell ]; then
-    source $HOME/.config/utilidadesYSistema/scripts/aliasShell
-fi
+    echo -n "%K{253}%F{237}[⎇  $branch "
+    [[ -n "$remoteInfo" ]] && echo -n "$remoteInfo"
+    (( staged > 0 )) && echo -n "🗸 $staged "
+    (( unstaged > 0 )) && echo -n "+$unstaged "
+    (( untracked > 0 )) && echo -n "?$untracked"
+    echo -n "]%f%k"
+}
 
-# Modo para Powerlevel9k
-export POWERLEVEL9K_MODE='awesome-fontconfig'
+PROMPT='%B
+$(homePWD)$(gitPromptInfo)
+%F{252}↳ %f%b'
+
+# Cargar
+source $HOME/.config/utilidadesYSistema/scripts/aliasShell
+source $HOME/Repositorios/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/Repositorios/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/Repositorios/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 
 # Configuración de teclas usando terminfo
 typeset -g -A key
@@ -83,3 +101,4 @@ export FZF_DEFAULT_OPTS='
   --border
   --cycle
 '
+
