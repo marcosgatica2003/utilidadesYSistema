@@ -21,4 +21,4 @@ else
 fi 
 
 echo -e "$tempsFormatted" | rofi -dmenu -p "TEMPERATURAS "  \
-    -theme $HOME/.config/utilidadesYSistema/configuracionesRofi/temaTemperaturas.rasi 
+    -theme $HOME/.config/utilidadesYSistema/dotfiles/rofi/configuracionesRofi/temaTemperaturas.rasi
