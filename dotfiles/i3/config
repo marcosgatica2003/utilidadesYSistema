@@ -1,0 +1,134 @@
+set $mod Mod4
+
+font pango:JetBrainsMono Nerd Font 10
+
+exec --no-startup-id dex --autostart --environment i3
+
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+floating_modifier $mod
+
+tiling_drag modifier titlebar
+
+bindsym $mod+Return exec st -e tmux
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+t exec $HOME/.config/utilidadesYSistema/dotfiles/rofi/configuracionesRofi/rofiSensoresPolybar.sh
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Alt_L bar mode toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+mode "resize" {
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+client.focused #ff4040 #ff4040 #000000 #ff4040
+client.focused_inactive #222222 #222222 #373b41 #222222
+client.unfocused #222222 #222222 #dfdfdf #222222
+client.urgent #f0c674 #f0c674 #000000 #f0c674
+client.placeholder #ff4040 #ff4040 #000000 #ff4040
+
+gaps inner 2
+gaps outer 3
+smart_gaps on
+
+for_window [class="^mpv$"] floating enable
+for_window [class=".*"] border pixel 2
+for_window [class="^feh$"] floating enable
+ 
+bar {
+        status_command i3blocks
+        mode hide
+        tray_padding 4
+        hidden_state hide
+        modifier none
+        font pango:JetBrainsMono Nerd Font 10.5
+        position top
+        colors {
+            background #1d2021
+            statusline #cdd6f4
+            separator  #585b70
+
+            #                  border      background   text
+            focused_workspace  #222222     #ff4040      #222222
+            active_workspace   #222222     #651201      #cdd6f4
+            inactive_workspace #222222     #373B41      #a6adc8
+            urgent_workspace   #222222     #f0c674      #1e1e2e
+            binding_mode       #222222     #f9e2af      #1e1e2e
+        }
+}
