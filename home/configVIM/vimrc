@@ -6,12 +6,17 @@ Plug 'dense-analysis/ale'
 Plug 'reedes/vim-lexical'
 Plug 'lervag/vimtex'
 Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 syntax enable
-colorscheme slate
+colorscheme gruvbox
 filetype plugin indent on
 
+set number
+set background=dark
 set spell spelllang=es
 set completeopt=menu,menuone,noselect
 set termguicolors
@@ -34,9 +39,12 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set laststatus=2
+set noshowmode
 
 let &t_ut=''
-
+let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts = 1
 let g:loaded_python_provider = 1
 let g:loaded_python3_provider = 1
 
@@ -46,6 +54,13 @@ let g:ale_set_statusline = 1
 let g:ale_set_highlights = 1
 let g:ale_virtualtext_cursor = 1
 
+let g:airline_section_z = '%3p%% %3l:%2c'
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#virtualenv#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
+
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_method = 'latexmk'
 let g:vimtex_compiler_latexmk = {
@@ -54,10 +69,25 @@ let g:vimtex_compiler_latexmk = {
       \ 'continuous' : 1,
       \}
 let g:vimtex_quickfix_mode = 0
+let g:vimtex_main_file = 'main.tex'
 
-nnoremap <C-Down> ]s
-nnoremap <C-Up> [s
-nnoremap <C-Left> z=
+function! FindAndCompileMainTex()
+  silent write
+  
+  let current_dir = getcwd()
+  
+  let main_file = findfile("main.tex", ".;")
+  
+  if !empty(main_file)
+    echo "Compilando main.tex..."
+    execute "VimtexCompile " . main_file
+  else
+    echo "No se encontró main.tex. Compilando archivo actual..."
+    VimtexCompile
+  endif
+endfunction
+
+nnoremap <Leader>lm :call FindAndCompileMainTex()<CR>
 nnoremap <Leader>q :cclose<CR>
 
 autocmd BufNewFile *.c,*.h 0r ~/.vim/templates/template.c
@@ -65,9 +95,7 @@ autocmd BufNewFile *.cpp,*.hpp 0r ~/.vim/templates/template.cpp
 autocmd BufNewFile *.ino 0r ~/.vim/templates/template.ino
 autocmd BufNewFile *.tex 0r ~/.vim/templates/template.tex
 autocmd BufNewFile *.h 0r ~/.vim/templates/template.h
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=blue   ctermbg=234
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green  ctermbg=234
+autocmd FileType tex setlocal spell spelllang=es
 autocmd Syntax tex,c,cpp,vim,xml,html,xhtml setlocal foldmethod=syntax
 autocmd Syntax tex,c,cpp,vim,xml,html,xhtml,perl normal zR
 
@@ -76,15 +104,18 @@ inoremap { {}<Left>
 inoremap [ []<Left>
 inoremap ' ''<Left>
 inoremap " ""<Left>
-inoremap $ $$<Left>
+" inoremap $ $$<Left>
 inoremap <C-Left> <C-X><C-S>
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 highlight Type cterm=italic gui=italic
 highlight Function cterm=italic gui=italic
 highlight Constant cterm=bold gui=bold
-highlight Normal ctermbg=NONE guibg =#131313
-highlight texStatement guifg=#FF5733 gui=bold
 highlight texCmdPart guifg=#C70039 gui=italic
 highlight String guifg=#FFA07A gui=italic
+highlight SpellBad cterm=undercurl ctermfg=red gui=undercurl guisp=Red
+highlight CocErrorHighlight cterm=undercurl gui=undercurl guisp=Red
+
