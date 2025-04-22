@@ -1,16 +1,11 @@
 alias actualizarSistema='$HOME/.config/utilidadesYSistema/scripts/actualizarSistema.sh'
 alias cls="cd $HOME && clear"
-alias encenderBluetooth='$HOME/.config/utilidadesYSistema/scripts/encenderBluetooth.sh'
-alias brillo='$HOME/.config/utilidadesYSistema/scripts/brillo.sh'
 alias encenderSsh='sudo systemctl start sshd && sudo systemctl enable sshd && echo "Ssh encendido."'
-alias pacman='sudo pacman'
 alias cambiarTema='$HOME/.config/utilidadesYSistema/scripts/cambiarTema.sh'
 alias clima="curl wttr.in/Córdoba_Argentina"
 alias vimrc="vim ~/.vimrc"
 alias descargarYT="python3 $HOME/gaticonTools/descargarYoutube/descargarYT.py"
-alias camaraPython='python3 $HOME/.config/utilidadesYSistema/scripts/codigosPython/camaraOpenCvBasico.py'
 alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
-alias apt='sudo apt'
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
 alias cambiarWallpaper=$HOME/.config/utilidadesYSistema/home/wallpapers/wallpaperAleatorio.sh
@@ -38,6 +33,7 @@ else
     }
 fi
 
+alias pacman='sudo pacman'
 alias copiar='xclip -selection clipboard'
 alias gstatus='git status'
 alias ga='git add'
