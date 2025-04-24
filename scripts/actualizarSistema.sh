@@ -13,8 +13,8 @@ fi
 
 
 if [ -f /etc/debian_version ]; then
-	sudo apt update | lolcat
-	sudo apt full-upgrade --autoremove
+	sudo apt-get update | lolcat
+	sudo apt-get full-upgrade --autoremove
 	imprimirMensaje
 elif [ -f /etc/arch-release ]; then
 	sudo pacman -Syyuu
