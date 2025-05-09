@@ -1,14 +1,6 @@
 set $mod Mod4
 
-font pango:JetBrainsMono Nerd Font 10
-
-exec --no-startup-id dex --autostart --environment i3
-
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+font pango:JetBrainsMono Nerd Font Bold 10
 
 floating_modifier $mod
 
@@ -19,7 +11,7 @@ bindsym $mod+Return exec st -e tmux
 bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+t exec $HOME/.config/utilidadesYSistema/dotfiles/rofi/configuracionesRofi/rofiSensoresPolybar.sh
+bindsym $mod+t exec $HOME/.config/rofi/temperaturas.sh
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -30,13 +22,13 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
+# bindsym $mod+h split h
 
-bindsym $mod+v split v
+# bindsym $mod+v split v
 
 bindsym $mod+f fullscreen toggle
 
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -44,7 +36,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Alt_L bar mode toggle
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 set $ws1 "1: "
 set $ws2 "2: "
@@ -81,7 +73,6 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 mode "resize" {
 
@@ -103,24 +94,24 @@ client.unfocused #222222 #222222 #dfdfdf #222222
 client.urgent #f0c674 #f0c674 #000000 #f0c674
 client.placeholder #ff4040 #ff4040 #000000 #ff4040
 
-gaps inner 2
-gaps outer 3
+gaps inner 4
+gaps outer 4
 smart_gaps on
 
 for_window [class="^mpv$"] floating enable
 for_window [class=".*"] border pixel 2
 for_window [class="^feh$"] floating enable
- 
+
 bar {
         status_command i3blocks
         mode hide
         tray_padding 4
         hidden_state hide
         modifier none
-        font pango:JetBrainsMono Nerd Font 10.5
+        font pango:JetBrainsMono Nerd Font Bold 10.5
         position top
         colors {
-            background #1d2021
+            background #222222
             statusline #cdd6f4
             separator  #585b70
 

@@ -3,7 +3,7 @@ separator_block_width=15
 
 align=center
 markup=pango
-background=#1d2021
+background=#272727
 color=#ebdbb2
 
 border_top=0
@@ -12,26 +12,33 @@ border_left=0
 border_right=0
 color=#ff4040
 
+[amorcito]
+command=$HOME/.config/i3blocks/scripts/yael 2>> /tmp/i3blocks-yael.log
+interval=once
+border=#CA231C
+color=#CA231C
+click_events=true
+
 [network]
 command=$HOME/.config/i3blocks/scripts/internet.py
 label=  
 interval=5
-border=#00ffe5
-color=#00ffe5
+border=#679B69
+color=#679B69
 
 [volume]
 command=$HOME/.config/i3blocks/scripts/volume
-interval=once
+interval=1
 signal=10
 click_events=true
-color=#ff4040
-border=#ff4040
+color=#D59720
+border=#D59720
 
 [battery]
 command=$HOME/.config/i3blocks/scripts/battery
 label= 
-color=#00ff00
-border=#00ff00 
+color=#D59720
+border=#D59720
 markup=pango
 interval=30
 
@@ -39,5 +46,5 @@ interval=30
 command=date +'%H:%M'
 label= 
 interval=1
-color=#ededed
-border=#ff4040
+color=#E9D9B0
+border=#E9D9B0

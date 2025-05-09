@@ -29,7 +29,7 @@ def getIPAddress(interface):
 
 def main():
 
-    interfaces = ["wlp4s0", "enp3s0"]
+    interfaces = ["wlan0", "wlp4s0", "enp3s0"]
 
     foundConnection = False
     netInfo = ""

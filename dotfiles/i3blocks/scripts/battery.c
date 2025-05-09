@@ -4,28 +4,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-void colores(int capa) {
-    if (capa <= 10) { printf("#FF0000\n"); }
-
-    if (capa <= 25) { printf("#FFAE00\n"); } 
-
-    if (capa >= 90) { printf("#00FF00\n"); } 
-}
-
 int main() {
-    FILE *archivoCapacidad;
-    unsigned int capacidad;
+    FILE* archivoCapacidad;
+    FILE* archivoEstado;
+    unsigned int capacidad = 0;
+    char estado[32]= {0};
 
     archivoCapacidad = fopen("/sys/class/power_supply/BAT1/capacity", "r");
+    archivoEstado = fopen("/sys/class/power_supply/BAT1/status", "r");
 
-    if (archivoCapacidad == NULL) {fprintf(stderr,"Error al acceder a la batería"); return 1;}
+    if (archivoCapacidad == NULL || archivoEstado == NULL) {
+        fprintf(stderr,"Error al acceder a la batería");
+        fclose(archivoEstado); fclose(archivoCapacidad);
+        return 1;
+    }
 
     fscanf(archivoCapacidad, "%d", &capacidad);
-    fclose(archivoCapacidad);
-
-    printf("%d%%\n", capacidad);
-
-    colores(capacidad);
+    fscanf(archivoEstado, "%31s", estado);
+    fclose(archivoCapacidad); fclose(archivoEstado);
+    ( strcmp(estado, "Charging") == 0 ) ? printf("⚡%d%%\n",capacidad) : printf("%d%%\n", capacidad);
 
     return 0;
 }
