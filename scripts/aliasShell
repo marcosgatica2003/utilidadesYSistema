@@ -1,6 +1,7 @@
 alias actualizarSistema='$HOME/.config/utilidadesYSistema/scripts/actualizarSistema.sh'
 alias cls="cd $HOME && clear"
 alias encenderSsh='sudo systemctl start sshd && sudo systemctl enable sshd && echo "Ssh encendido."'
+alias encenderBluetooth='rfkill unblock bluetooth && systemctl start bluetooth.service'
 alias clima="curl wttr.in/Córdoba_Argentina"
 alias vimrc="vim ~/.vimrc"
 alias descargarYT="python3 $HOME/gaticonTools/descargarYoutube/descargarYT.py"
@@ -33,6 +34,7 @@ else
 fi
 
 alias pacman='doas pacman'
+alias porfa='doas'
 alias apt='sudo apt'
 alias copiar='xclip -selection clipboard'
 alias gstatus='git status'
