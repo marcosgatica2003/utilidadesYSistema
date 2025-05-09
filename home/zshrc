@@ -1,5 +1,5 @@
 tmux source-file $HOME/.config/tmux/tmuxZsh.conf
-
+$HOME/Repositorios/gaticonTools/tuxZsh/tuxsay.sh 
 autoload -Uz vcs_info
 precmd() {
     vcs_info
@@ -10,48 +10,22 @@ setopt prompt_subst
 
 homePWD() {
   if [[ "$PWD" == "$HOME" ]]; then
-    echo -n "%K{237}%F{253}[.]%f%k"
+    echo -n "%K{236}%F{230}[.]%f%k"
   else
-    echo -n "%K{237}%F{253}[ ${PWD/#$HOME/~}] %f%k"
+    echo -n "%K{236}%F{230}[ %F{144}${PWD/#$HOME/~}%F{230}] %f%k"
   fi
 }
 
-gitPromptInfo() {
-    git rev-parse --is-inside-work-tree &>/dev/null || return
-
-    local branch="$(git symbolic-ref --short HEAD 2>/dev/null || git describe --tags --always 2>/dev/null)"
-    local gitStatus=$(git status --porcelain --branch 2>/dev/null)
-    local remoteInfo=""
-
-    if echo "$gitStatus" | grep -q "^##"; then
-        local ahead=$(echo "$gitStatus" | grep "^##" | grep -o "ahead [0-9]*" | awk '{print $2}')
-        local behind=$(echo "$gitStatus" | grep "^##" | grep -o "behind [0-9]*" | awk '{print $2}')
-        [[ -n "$ahead" ]] && remoteInfo+="⇡ $ahead "
-        [[ -n "$behind" ]] && remoteInfo+="⇣ $behind "
-    fi
-
-    local staged=$(echo "$gitStatus" | grep -E "^[MADRC]" | wc -l)
-    local unstaged=$(echo "$gitStatus" | grep -E "^.[MADRC]" | wc -l)
-    local untracked=$(echo "$gitStatus" | grep -E "^\?\?" | wc -l)
-
-    echo -n "%K{253}%F{237}[⎇  $branch "
-    [[ -n "$remoteInfo" ]] && echo -n "$remoteInfo"
-    (( staged > 0 )) && echo -n "🗸 $staged "
-    (( unstaged > 0 )) && echo -n "+$unstaged "
-    (( untracked > 0 )) && echo -n "?$untracked"
-    echo -n "]%f%k"
-}
-
 PROMPT='%B
-$(homePWD)$(gitPromptInfo)
-%F{252}↳ %f%b'
+$(homePWD)$(git_super_status)%f
+%F{230}↳ %f'
 
 # Cargar
 source $HOME/.config/utilidadesYSistema/scripts/aliasShell
 source $HOME/Repositorios/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $HOME/Repositorios/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/Repositorios/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-
+source $HOME/Repositorios/zsh-git-prompt/zshrc.sh
 # Configuración de teclas usando terminfo
 typeset -g -A key
 
@@ -101,4 +75,5 @@ export FZF_DEFAULT_OPTS='
   --border
   --cycle
 '
-
+GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_EXECUTABLE=haskell
