@@ -1,0 +1,37 @@
+/*******************************************************************************
+ * ROFI Color theme
+ * User: Marcos Raúl Gatica
+ * Copyright: GNU GPL4
+ *******************************************************************************/
+* { background-color: #272727; }
+prompt {
+    enabled:        true;
+    border:     0px 0px 1px 0px;
+    border-color: #679B69;
+    spacing:    0;
+    margin: 0px 0em 0em 3.2em;
+    text-color: #679B69;
+    location: center;
+    text-outline: true;
+}
+
+configuration {
+    font: "JetBrains Mono Nerd Font 12";
+    show-icons: true;
+    yoffset:    40;
+    disable-history:    true;
+}
+
+window {
+    location:   north;
+    border:           2px;
+    border-color:   #679B69;
+    padding:          1;
+    width:            300px;
+    height:           210px;
+    margin:           1;
+}
+
+element-text { text-color:  #E9D9B0; }
+
+inputbar { children: [ prompt ]; }
