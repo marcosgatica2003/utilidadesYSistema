@@ -13,7 +13,7 @@ fi
 
 
 if [ -f /etc/debian_version ]; then
-	sudo apt-get update | lolcat
+	sudo apt-get update 
 	sudo apt-get full-upgrade --autoremove
 	imprimirMensaje
 elif [ -f /etc/arch-release ]; then
