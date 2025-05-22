@@ -1,29 +1,38 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper, twocolumn]{article}
 
 \usepackage{colortbl}
 \usepackage{cancel}
 \usepackage{siunitx}
 \usepackage{multirow}
 \usepackage{array}
-\usepackage[table, xcdraw]{xcolor}
+\usepackage[table, xcdraw, dvipsnames]{xcolor}
 \usepackage{times}
 \usepackage{tikz}
-\usepackage[margin=0cm]{geometry}
+\usepackage[top=0.75in, bottom=1in, inner=0.75in, outer=0.75in,
+            headheight=45pt, headsep=2pt, footskip=5mm]{geometry}
 \usepackage{graphicx}
 \usepackage{anyfontsize}
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
 \usepackage{amsmath}
-\usepackage[spanish]{babel}
+\usepackage[spanish, es-tabla]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[explicit]{titlesec}
 \usepackage{etoolbox}
-\usepackage{multicol}
 \usepackage{enumitem}
-\usepackage{caption}
+\usepackage[labelformat=simple,labelsep=none]{caption}
+\usepackage{mathptmx}
+\usepackage{lastpage}
 \usepackage{booktabs}
 \usepackage{amsfonts}
 \usepackage[version=4]{mhchem}
+\usepackage{float}
+\usepackage{circuitikz}
+\usepackage{subcaption}
+\usepackage{changepage}
+\usepackage{eso-pic}
+% \usepackage{showframe}
+\usepackage{pythontex}
 
 \include{newCommands}
 
@@ -31,18 +40,6 @@
     \include{caratula}
     \include{configContenido}
     \include{indice}
-    \saltoPag%
-    \begin{multicols}{2} 
-        \include{unidad1} 
-        \include{unidad2}
-        \include{unidad3}
-        \include{unidad4}
-        \include{unidad5}
-        \include{unidad6}
-        \include{unidad7}
-        \include{unidad8}
-        \include{unidad9}
-    \end{multicols}
+    \pagestyle{fancy}
 \end{document}
-
 

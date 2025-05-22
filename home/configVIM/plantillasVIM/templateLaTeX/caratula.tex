@@ -1,5 +1,6 @@
 \author{}\date{}\title{}
 \thispagestyle{empty}
+\newgeometry{left=0cm,right=0cm,top=0cm,bottom=0cm}
 \begin{tikzpicture}[remember picture, overlay]
     \pgftransformshift{\pgfpoint{0cm}{0cm}}
     \draw [line width=2pt](1cm,-1cm) -- (1cm,-27.7cm) -- (14cm, -27.7cm) -- (14cm, -1cm) -- (1cm, -1cm);
@@ -12,15 +13,17 @@
     \node at (17cm, -14cm) {\scalebox{5}{\textbf{F}}};
     \node at (17cm, -16cm) {\scalebox{5}{\textbf{R}}};
     \node at (17cm, -18cm) {\scalebox{5}{\textbf{C}}};
-    \node at (7.5cm, -14cm) {\scalebox{3}{\textbf{TITULO}}};
-    \node at (7.5cm, -25cm) {
+    \node at (7.5cm, -14cm) {\scalebox{3}{\textbf{Título}}};
+    \node at (7.5cm, -23.5cm) {
 	\begin{minipage}[c]{12cm}
 	    \begin{itemize}
             \raggedright
-            \item \fontsize{12}{12}\selectfont \textbf{Autor:} Marcos Raúl Gatica \\
-            \item \fontsize{12}{12}\selectfont \textbf{Curso:}  \\
-            \item \fontsize{12}{12}\selectfont \textbf{Asignatura:} \\
+            \item \fontsize{12}{12}\selectfont \textbf{Autor:} 
+                \begin{itemize} \item Marcos Raúl Gatica - Leg. 402006 \end{itemize}
+            \item \fontsize{12}{12}\selectfont \textbf{Curso:} 3R1  \\
+            \item \fontsize{12}{12}\selectfont \textbf{Asignatura:} 
             \item \fontsize{12}{12}\selectfont \textbf{Institución:} Universidad Tecnológica Nacional - Facultad Regional de Córdoba.
         \end{itemize}
     \end{minipage}};
 \end{tikzpicture}
+\restoregeometry
