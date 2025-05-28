@@ -1,4 +1,0 @@
-zstyle ':completion:*' menu select
-zstyle ':fzf-tab:*' fzf-flags '--layout=reverse'
-zstyle ':fzf-tab:*' fzf-min-height 10
-
