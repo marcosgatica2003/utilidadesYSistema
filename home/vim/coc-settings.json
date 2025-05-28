@@ -1,0 +1,16 @@
+{
+    "pyright.enable": true,
+    "pyright.disableDiagnostics": true,
+    "pyright.disableCompletion": false,
+    "pyright.disableDocumentation": true,
+    "pyright.inlayHints.functionReturnTypes": false,
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.parameterTypes": false,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUnknownParameterType": "none",
+        "reportUnknownArgumentType": "none",
+        "reportUnknownMemberType": "none",
+        "reportUnknownVariableType": "none"
+    },
+    "python.analysis.typeCheckingMode": "off"
+}
