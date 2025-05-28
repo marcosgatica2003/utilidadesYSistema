@@ -12,13 +12,6 @@ border_left=0
 border_right=0
 color=#ff4040
 
-[amorcito]
-command=$HOME/.config/i3blocks/scripts/yael 2>> /tmp/i3blocks-yael.log
-interval=once
-border=#CA231C
-color=#CA231C
-click_events=true
-
 [network]
 command=$HOME/.config/i3blocks/scripts/internet.py
 label=  

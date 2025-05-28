@@ -12,6 +12,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+t exec $HOME/.config/rofi/temperaturas.sh
+bindsym $mod+n exec st -e nnn
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -101,6 +102,8 @@ smart_gaps on
 for_window [class="^mpv$"] floating enable
 for_window [class=".*"] border pixel 2
 for_window [class="^feh$"] floating enable
+for_window [class="^MPlayer$"] floating enable pixel 3
+for_window [class="^matplotlib$"] floating enable
 
 bar {
         status_command i3blocks
