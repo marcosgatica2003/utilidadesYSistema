@@ -10,10 +10,9 @@ else
     feh --bg-scale $HOME/.config/utilidadesYSistema/home/wallpapers/gruvboxDebian.png
 fi
 
-polybar &
 dunst &
 kdeconnectd &
-brightnessctl set 30%
+brightnessctl set 40%
 xset s off -dpms &
 exec i3
 
