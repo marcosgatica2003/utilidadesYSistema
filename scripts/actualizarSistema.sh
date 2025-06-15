@@ -46,7 +46,7 @@ function actualizarGit {
 
 function verificarConexion {
     info "Verificando conexión a internet..."
-    if ! ping -c 1 1.1.1.1 &>/dev/null; then
+    if ! ping -c 2 1.1.1.1 &>/dev/null; then
         error "Pibe no tenés internet"
         exit 1
     fi
@@ -54,13 +54,13 @@ function verificarConexion {
 
 function actualizarAPT {
     ok "Usando APT..."
-    sudo apt-get update
-    sudo apt-get full-upgrade -y --autoremove
+    doas apt-get update
+    doas apt-get full-upgrade -y --autoremove
 }
 
 function actualizarPacman {
     ok "Usando Pacman..."
-    sudo pacman -Syyuu --noconfirm
+    doas pacman -Syyuu --noconfirm
 }
 
 function actualizarYay {
