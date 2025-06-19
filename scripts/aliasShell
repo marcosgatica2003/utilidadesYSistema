@@ -34,8 +34,8 @@ else
 fi
 
 alias pacman='sudo pacman'
-alias porfa='sudo'
-alias apt='sudo apt'
+alias apt='sudo /usr/local/bin/apt-fast'
+alias apto='sudo /bin/apt'
 alias copiar='xclip -selection clipboard'
 alias gstatus='git status'
 alias ga='git add'
