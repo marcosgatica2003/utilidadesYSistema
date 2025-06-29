@@ -12,6 +12,17 @@ function ok()      { echo -e "${GREEN}[✓] $1${RESET}"; }
 function warn()    { echo -e "${ORANGE}[!] $1${RESET}"; }
 function error()   { echo -e "${RED}[✗] $1${RESET}"; }
 
+if command -v doas >/dev/null 2>&1; then
+    PRIV="doas"
+    ok "Usando doas..."
+elif command -v sudo >/dev/null 2>&1; then
+    PRIV="sudo"
+    ok "Usando sudo..."
+else
+    warn "No hay sudo ni doas en el sistema loco, que desastre"
+    exit 1
+fi
+
 function imprimirMensaje {
     if command -v figlet &>/dev/null && command -v lolcat &>/dev/null; then
         figlet "Sistema actualizado!" | lolcat
@@ -54,18 +65,18 @@ function verificarConexion {
 
 function actualizarAPT {
     ok "Usando APT..."
-    doas apt-get update
-    doas apt-get full-upgrade -y --autoremove
+    $PRIV apt-get update
+    $PRIV apt-get full-upgrade -y --autoremove
 }
 
 function actualizarPacman {
     ok "Usando Pacman..."
-    doas pacman -Syyuu --noconfirm
+    $PRIV pacman -Syyuu --noconfirm
 }
 
 function actualizarYay {
     ok "Usando Yay..."
-    yay -Syyuu --noconfirm --needed
+    yay -Syyuu --noconfirm --aur
 }
 
 function actualizarFlatpak {
@@ -93,3 +104,4 @@ fi
 [[ $(command -v flatpak) ]] && actualizarFlatpak
 
 imprimirMensaje
+unset PRIV
