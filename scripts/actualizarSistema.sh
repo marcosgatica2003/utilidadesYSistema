@@ -59,6 +59,7 @@ function actualizarGit {
 
 function instalar {
     cat /home/marcosgatica/.config/utilidadesYSistema/scripts/actualizarSistema.sh > /usr/local/bin/actualizarSistema
+    $PRIV chmod +x /usr/local/bin/actualizarSistema
     ok "Script copiado a /usr/local/bin"
 }
 
@@ -94,6 +95,20 @@ function actualizarFlatpak {
     flatpak update -y
 }
 
+function actualizarDiscordManual {
+    info "Descargando .deb de discord..."
+    local cmdActual=$(pwd)
+    local rutaTmp=$(mktemp -d)
+    cd "$rutaTmp"
+    wget -q --show-progress "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
+    info "Instalando discord..."
+    verificarPrivilegios
+    sudo apt install -y ./discord.deb
+    cd "$cmdActual"
+    rm -rf "$rutaTmp"
+    ok "Discord actualizado!"
+}
+
 if [[ "$1" == "--help" ]]; then
     echo -e "Script para actualizar el sistema operativo GNU/Linux. Simplemente ejecútelo sin argumentos.\n"
     echo -e "Incluye apt, pacman, yay, flatpak y git"
@@ -121,6 +136,7 @@ fi
 [[ $(command -v pacman) ]] && actualizarPacman
 [[ $(command -v yay) ]] && actualizarYay
 [[ $(command -v flatpak) ]] && actualizarFlatpak
+[[ $(command -v discord) ]] && actualizarDiscordManual
 
 imprimirMensaje
 unset PRIV
