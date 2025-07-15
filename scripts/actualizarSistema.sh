@@ -12,22 +12,23 @@ function ok()      { echo -e "${GREEN}[✓] $1${RESET}"; }
 function warn()    { echo -e "${ORANGE}[!] $1${RESET}"; }
 function error()   { echo -e "${RED}[✗] $1${RESET}"; }
 
-if command -v doas >/dev/null 2>&1; then
-    PRIV="doas"
-    ok "Usando doas..."
-elif command -v sudo >/dev/null 2>&1; then
-    PRIV="sudo"
-    ok "Usando sudo..."
-else
-    warn "No hay sudo ni doas en el sistema loco, que desastre"
-    exit 1
-fi
-
+function verificarPrivilegios {
+    if command -v doas >/dev/null 2>&1; then
+        PRIV="doas"
+        ok "Usando doas..."
+    elif command -v sudo >/dev/null 2>&1; then
+        PRIV="sudo"
+        ok "Usando sudo..."
+    else
+        warn "No hay sudo ni doas en el sistema loco, que desastre"
+        exit 1
+    fi
+}
 function imprimirMensaje {
     if command -v figlet &>/dev/null && command -v lolcat &>/dev/null; then
         figlet "Sistema actualizado!" | lolcat
     else
-        echo "Sistema actualizado!"
+        ok "Sistema actualizado!"
     fi
 }
 
@@ -46,6 +47,7 @@ function actualizarGit {
         if [[ -d "$linea/.git" ]]; then
             ok "Actualizando $linea..."
             cd "$linea"
+            git restore .
             git pull --ff-only
         else
             warn "El repo no es válido"
@@ -53,6 +55,11 @@ function actualizarGit {
     done < "$archivo"
 
     cd "$cwd"
+}
+
+function instalar {
+    cat /home/marcosgatica/.config/utilidadesYSistema/scripts/actualizarSistema.sh > /usr/local/bin/actualizarSistema
+    ok "Script copiado a /usr/local/bin"
 }
 
 function verificarConexion {
@@ -65,17 +72,20 @@ function verificarConexion {
 
 function actualizarAPT {
     ok "Usando APT..."
+    verificarPrivilegios
     $PRIV apt-get update
     $PRIV apt-get full-upgrade -y --autoremove
 }
 
 function actualizarPacman {
     ok "Usando Pacman..."
+    verificarPrivilegios
     $PRIV pacman -Syyuu --noconfirm
 }
 
 function actualizarYay {
     ok "Usando Yay..."
+    verificarPrivilegios
     yay -Syyuu --noconfirm --aur
 }
 
@@ -88,6 +98,15 @@ if [[ "$1" == "--help" ]]; then
     echo -e "Script para actualizar el sistema operativo GNU/Linux. Simplemente ejecútelo sin argumentos.\n"
     echo -e "Incluye apt, pacman, yay, flatpak y git"
     echo "Autor: Marcos Raúl Gatica (saludos a LOLON y LULUN)"
+    exit 0
+fi
+
+if [[ "$1" == "--install" ]]; then
+    if [ $(id -u) -ne 0 ]; then 
+        echo "Sos un boludo! mete superusuario nomás."
+        exit 0
+    fi
+    instalar
     exit 0
 fi
 
