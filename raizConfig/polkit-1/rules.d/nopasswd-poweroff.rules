@@ -1,0 +1,6 @@
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.login1.power-off" &&
+        subject.isInGroup("shutdown")) {
+        return polkit.Result.YES;
+    }
+});
