@@ -1,43 +1,65 @@
-separator=true
-separator_block_width=15
+separator=false
+separator_block_width=5
+align=right
 
-align=center
-markup=pango
+markup=none
 background=#272727
 color=#ebdbb2
 
-border_top=0
+border_top=1
 border_bottom=2
-border_left=0
-border_right=0
+border_left=1
+border_right=1
 color=#ff4040
+
+[redCircle]
+command=echo "  "
+interval=once
+color=#cc241d
+background=#282828
+
+[yellowCircle]
+command=echo " "
+interval=once
+color=#fabd2f
+background=#282828
+
+[greenCircle]
+command=echo "  "
+interval=once
+color=#8ec07c
+background=#282828
+
+[windowTitle]
+command=$HOME/.config/i3blocks/scripts/titulos
+label= 
+interval=1
+color=#EBDBB2
+background=#282828
 
 [network]
 command=$HOME/.config/i3blocks/scripts/internet.py
-label=  
 interval=5
-border=#679B69
-color=#679B69
+background=#3C3836
+color=#EBDBB2
 
 [volume]
 command=$HOME/.config/i3blocks/scripts/volume
 interval=1
 signal=10
 click_events=true
-color=#D59720
-border=#D59720
+color=#EBDBB2
+background=#3C3836
 
 [battery]
 command=$HOME/.config/i3blocks/scripts/battery
-label= 
-color=#D59720
-border=#D59720
+color=#EBDBB2
+background=#3C3836
 markup=pango
 interval=30
 
 [time]
-command=date +'%H:%M'
-label= 
+command=$HOME/.config/i3blocks/scripts/hora
 interval=1
-color=#E9D9B0
-border=#E9D9B0
+color=#EBDBB2
+background=#3C3836

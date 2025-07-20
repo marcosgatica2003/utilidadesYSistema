@@ -12,11 +12,17 @@ def isInterfaceUp(interface):
 
 def getWifiSSID(interface):
     try:
-        output = subprocess.check_output(["iwgetid", interface, "-r"], universal_newlines=True)
-        return output.strip()
+        output = subprocess.check_output(["connmanctl", "services"], universal_newlines=True)
+        for line in output.strip().splitlines():
+            if line.strip().startswith("*"):
+                parts = line.strip().split()
+                for i, part in enumerate(parts):
+                    if part.startswith("wifi_"):
+                        ssid_parts = parts[1:i]
+                        return " ".join(ssid_parts)
+        return "N/A"
     except:
         return "N/A"
-
 def getIPAddress(interface):
     try:
         output = subprocess.check_output(["ip", "-4", "addr", "show", interface,], universal_newlines=True)
@@ -42,11 +48,11 @@ def main():
                 if interface.startswith("wl"):
                     ssid = getWifiSSID(interface)
                     if ssid and ssid != "N/A":
-                        netInfo = f"{ssid}: {ip}"
+                        netInfo = f"   {ssid}: {ip} "
                     else:
-                        netInfo = f"W: {ip}"
+                        netInfo = f"   : {ip} "
                 else:
-                    netInfo = f"E: {ip}"
+                    netInfo = f"   : {ip} "
 
                 foundConnection = True
                 break

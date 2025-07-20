@@ -15,14 +15,14 @@ int main() {
     char volume[MAX_BUF_SIZE];
     char* blockButton = getenv("BLOCK_BUTTON");
 
-    if (blockButton != NULL) {
-        click(atoi(blockButton));
+    if (blockButton != NULL) { click(atoi(blockButton)); }
+    if (estaMuteado())
+        printf("  OFF \n"); 
+    else { 
+        getVolumen(volume, MAX_BUF_SIZE); 
+        printf("   %s \n", volume); 
     }
-    if ( estaMuteado() ) { printf("OFF\n"); }
-    else {
-        getVolumen(volume, MAX_BUF_SIZE);
-        printf("%s\n", volume);
-    }
+
     return 0;
 }
 

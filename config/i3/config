@@ -1,76 +1,51 @@
 set $mod Mod4
 
-font pango:JetBrainsMono Nerd Font Bold 10
+font pango:JetBrainsMono Nerd Font Bold 9
 
 floating_modifier $mod
-
-tiling_drag modifier titlebar
 
 bindsym $mod+Return exec st -e tmux
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec dmenu_run
 bindsym $mod+t exec $HOME/.config/rofi/temperaturas.sh
-bindsym $mod+n exec st -e nnn
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
+bindsym $mod+c exec $HOME/Repositorios/gaticonTools/capturadorDePantallas/capturarPantallaX11.sh
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# bindsym $mod+h split h
-
-# bindsym $mod+v split v
-
 bindsym $mod+f fullscreen toggle
 
-# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+Alt_L bar mode toggle
 bindsym $mod+space focus mode_toggle
 
-# bindsym $mod+a focus parent
 
 set $ws1 "1: "
 set $ws2 "2: "
 set $ws3 "3: "
 set $ws4 "4: "
 set $ws5 "5: "
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
 
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
@@ -89,15 +64,21 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-client.focused #ff4040 #ff4040 #000000 #ff4040
-client.focused_inactive #222222 #222222 #373b41 #222222
-client.unfocused #222222 #222222 #dfdfdf #222222
+client.focused #504945 #504945 #EBDBB2 #504945
+client.focused_inactive #282828 #282828 #373b41 #282828
+client.unfocused #282828 #282828 #EBDBB2 #282828
 client.urgent #f0c674 #f0c674 #000000 #f0c674
 client.placeholder #ff4040 #ff4040 #000000 #ff4040
 
 gaps inner 4
 gaps outer 4
-smart_gaps on
+
+exec_always --no-startup-id feh --bg-scale $HOME/.variablesDeEntorno/wallpaper.jpg
+exec --no-startup-id i3blocks
+exec --no-startup-id dunst
+exec --no-startup-id kdeconnectd
+exec --no-startup-id brightnessctl set 40%
+exec --no-startup-id xset -dpms s off
 
 for_window [class="^mpv$"] floating enable
 for_window [class=".*"] border pixel 2
@@ -107,22 +88,20 @@ for_window [class="^matplotlib$"] floating enable
 
 bar {
         status_command i3blocks
-        mode hide
         tray_padding 4
-        hidden_state hide
         modifier none
-        font pango:JetBrainsMono Nerd Font Bold 10.5
+        font pango:JetBrainsMono Nerd Font Bold 9
         position top
         colors {
-            background #222222
+            background #282828
             statusline #cdd6f4
             separator  #585b70
 
             #                  border      background   text
-            focused_workspace  #222222     #ff4040      #222222
-            active_workspace   #222222     #651201      #cdd6f4
-            inactive_workspace #222222     #373B41      #a6adc8
-            urgent_workspace   #222222     #f0c674      #1e1e2e
-            binding_mode       #222222     #f9e2af      #1e1e2e
+            focused_workspace  #282828     #D5C4A1      #282828
+            active_workspace   #282828     #282828      #3C3836
+            inactive_workspace #282828     #282828      #A89984
+            urgent_workspace   #282828     #f0c674      #1e1e2e
+            binding_mode       #282828     #f9e2af      #1e1e2e
         }
 }
