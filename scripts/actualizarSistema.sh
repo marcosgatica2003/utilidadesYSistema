@@ -96,17 +96,21 @@ function actualizarFlatpak {
 }
 
 function actualizarDiscordManual {
-    info "Descargando .deb de discord..."
-    local cmdActual=$(pwd)
-    local rutaTmp=$(mktemp -d)
-    cd "$rutaTmp"
-    wget -q --show-progress "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
-    info "Instalando discord..."
-    verificarPrivilegios
-    sudo apt install -y ./discord.deb
-    cd "$cmdActual"
-    rm -rf "$rutaTmp"
-    ok "Discord actualizado!"
+    info "Actualizar Discord? "
+    read -p "(y/n): " OPCION
+    if [ "$OPCION" == "y" ]; then
+        info "Descargando .deb de discord..."
+        local cmdActual=$(pwd)
+        local rutaTmp=$(mktemp -d)
+        cd "$rutaTmp"
+        wget -q --show-progress "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
+        info "Instalando discord..."
+        verificarPrivilegios
+        sudo apt install -y ./discord.deb
+        cd "$cmdActual"
+        rm -rf "$rutaTmp"
+        ok "Discord actualizado!"
+    fi
 }
 
 if [[ "$1" == "--help" ]]; then
