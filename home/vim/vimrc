@@ -1,0 +1,6 @@
+for config_file in split(glob('~/.vim/config/*.vim'), '\n')
+  execute 'source' config_file
+endfor
+syntax enable
+colorscheme gruvbox
+filetype plugin indent on

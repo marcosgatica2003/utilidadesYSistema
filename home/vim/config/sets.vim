@@ -1,0 +1,29 @@
+set nonumber
+set background=dark
+set spell spelllang=es
+set completeopt=menu,menuone,noselect
+set termguicolors
+set history=500
+set encoding=utf-8
+set scrolloff=8
+set list listchars=tab:»·,trail:·
+set foldmethod=syntax
+set foldlevel=0
+set cursorline
+set backspace=2
+set autoread
+set incsearch
+set clipboard=unnamedplus
+set lazyredraw
+set updatetime=300
+set mouse=a
+set laststatus=4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set laststatus=2
+set noshowmode
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set belloff+=ctrlg
