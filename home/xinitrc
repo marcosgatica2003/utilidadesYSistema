@@ -1,18 +1,5 @@
 #!/bin/bash
-
-export XDG_SESSION_TYPE=x11
-export XDG_CURRENT_DESKTOP=i3
 export QT_QPA_PLATFORMTHEME=qt5ct
-if [[ -f /etc/arch-release ]]; then
-    feh --bg-scale $HOME/.config/utilidadesYSistema/home/wallpapers/archGruvBoxDark.png
-else
-    export PATH=$PATH:/usr/local/go/bin
-    feh --bg-scale $HOME/.config/utilidadesYSistema/home/wallpapers/gruvboxDebian.png
-fi
-
-dunst &
-kdeconnectd &
-brightnessctl set 40%
-xset s off -dpms &
-exec i3
-
+feh --bg-scale $HOME/.variablesDeEntorno/wallpaper.jpg
+dwmblocks &
+exec dbus-run-session -- dwm
