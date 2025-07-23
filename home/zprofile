@@ -2,5 +2,6 @@
 if [[ -z $DISPLAY && $XDG_VTNR -eq 1 && $(tty) == /dev/tty1 ]]; then
     source $HOME/.variablesDeEntorno/lsColors
     export PATH=$PATH:/usr/local/go/bin
+    export PATH="$HOME/.local/bin:$PATH"
     startx
 fi

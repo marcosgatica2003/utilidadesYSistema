@@ -1,10 +1,26 @@
-tmux source-file $HOME/.config/tmux/tmuxZsh.conf
-$HOME/Repositorios/gaticonTools/tuxZsh/tuxsay.sh 
-autoload -Uz vcs_info
-precmd() {
-    vcs_info
+function gitBranch {
+    ref=$(git symbolic-ref --short HEAD 2>/dev/null) && echo "$ref" 
 }
-autoload -U compinit; compinit
+
+function gitDirty {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+    [[ -n $(git status --porcelain 2>/dev/null) ]] && echo "*"
+}
+
+PROMPT='%B
+%K{236}%F{230}[ %F{214}${PWD/#$HOME/~}%F{230}]%f%k%F{109}[$(gitBranch)%F{167}$(gitDirty)%F{109}]%f
+%F{230}↳ %f'
+
+source ~/.config/utilidadesYSistema/home/zshPlugins/zsh-defer/zsh-defer.plugin.zsh
+zsh-defer source $HOME/.config/utilidadesYSistema/scripts/aliasShell
+zsh-defer source ~/.config/utilidadesYSistema/home/zshPlugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source ~/.config/utilidadesYSistema/home/zshPlugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-defer source ~/.config/utilidadesYSistema/home/zshPlugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+
+autoload -Uz compinit
+compinit -C
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path ~/.zsh/cache
 
 setopt prompt_subst
 
@@ -12,21 +28,11 @@ homePWD() {
   if [[ "$PWD" == "$HOME" ]]; then
     echo -n "%K{236}%F{230}[.]%f%k"
   else
-    echo -n "%K{236}%F{230}[ %F{144}${PWD/#$HOME/~}%F{230}] %f%k"
+    echo -n "%K{236}%F{230} %F{144}${PWD/#$HOME/~}%F{230} %f%k"
   fi
 }
 
-PROMPT='%B
-$(homePWD)$(git_super_status)%f
-%F{230}↳ %f'
 
-# Cargar
-source $HOME/.config/utilidadesYSistema/scripts/aliasShell
-source $HOME/Repositorios/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/Repositorios/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/Repositorios/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-source $HOME/Repositorios/zsh-git-prompt/zshrc.sh
-# Configuración de teclas usando terminfo
 typeset -g -A key
 
 key[Home]="${terminfo[khome]}"
@@ -75,5 +81,3 @@ export FZF_DEFAULT_OPTS='
   --border
   --cycle
 '
-GIT_PROMPT_ONLY_IN_REPO=1
-GIT_PROMPT_EXECUTABLE=haskell
