@@ -9,14 +9,14 @@ super + space
 
 # terminal emulator
 super + Return
-	alacritty -e tmux
+	st -e tmux
 
 # program launcher
 super + d
-	$HOME/.config/utilidadesYSistema/configuracionesRofi/abrirRofi.sh
+	dmenu_run
 
 super + t
-    $HOME/.config/utilidadesYSistema/configuracionesRofi/rofiSensoresPolybar.sh
+    /home/marcosgatica/.config/rofi/temperaturas.sh
 
 # close and kill
 super + shift + q
@@ -24,7 +24,7 @@ super + shift + q
 
 # Capturar pantalla
 super + Tab
-    $HOME/gaticonTools/capturadorDePantallas/capturarPantallaX11.sh
+    /home/marcosgatica/Repositorios/gaticonTools/capturadorDePantallas/gaticonCaptureX11.sh
 
 # Cambiar foco
 super + alt + {Left,Down,Up,Right}
