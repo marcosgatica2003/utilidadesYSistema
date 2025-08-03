@@ -129,7 +129,7 @@ if [[ "$1" == "--install" ]]; then
     exit 0
 fi
 
-verificarConexion
+# verificarConexion
 
 if [[ "$1" == "--git" ]]; then
     actualizarGit
