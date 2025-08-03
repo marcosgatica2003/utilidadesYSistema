@@ -19,7 +19,7 @@ int main() {
     fscanf(archivoCapacidad, "%d", &capacidad);
     fscanf(archivoEstado, "%31s", estado);
     fclose(archivoCapacidad); fclose(archivoEstado);
-    ( strcmp(estado, "Charging") == 0 ) ? printf("^c#ebdbb2^^b#3c3836^  ⚡ %d%% ^d^\n",capacidad) : printf("^c#ebdbb2^^b#3b3836^  %d%% ^d^\n", capacidad);
+    ( strcmp(estado, "Charging") == 0 ) ? printf("^c#282828^^b#fabd2f^ CHAR %d%% ^d^\n",capacidad) : printf("^c#282828^^b#b8bb26^ BAT %d%% ^d^\n", capacidad);
 
 
     return 0;

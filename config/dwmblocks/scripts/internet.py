@@ -48,11 +48,11 @@ def main():
                 if interface.startswith("wl"):
                     ssid = getWifiSSID(interface)
                     if ssid and ssid != "N/A":
-                        netInfo = f"^b#3c3836^^c#ebdbb2^   {ssid}: {ip} ^d^"
+                        netInfo = f"^b#83a598^^c#282828^ {ssid}: {ip} ^d^"
                     else:
-                        netInfo = f"   : {ip} "
+                        netInfo = f" W : {ip} "
                 else:
-                    netInfo = f"   : {ip} "
+                    netInfo = f" ETH : {ip} "
 
                 foundConnection = True
                 break

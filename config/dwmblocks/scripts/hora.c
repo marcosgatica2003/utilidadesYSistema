@@ -7,7 +7,7 @@ int main() {
     int hora = tm_struct->tm_hour;
     int minutos = tm_struct->tm_min;
 
-    printf("^c#ebdbb2^^b#3c3836^  %02d:%02d^d^\n", hora, minutos);
+    printf("^c#282828^^b#928374^ %02d:%02d ^d^\n", hora, minutos);
     return 0;
 }
 
