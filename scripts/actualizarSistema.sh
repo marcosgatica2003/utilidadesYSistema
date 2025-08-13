@@ -140,7 +140,7 @@ fi
 [[ $(command -v pacman) ]] && actualizarPacman
 [[ $(command -v yay) ]] && actualizarYay
 [[ $(command -v flatpak) ]] && actualizarFlatpak
-[[ $(command -v discord) ]] && actualizarDiscordManual
+[[ $(command -v discord) && $(command -v apt-get) ]] && actualizarDiscordManual
 
 imprimirMensaje
 unset PRIV
