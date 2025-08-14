@@ -7,8 +7,6 @@ int main() {
     int hora = tm_struct->tm_hour;
     int minutos = tm_struct->tm_min;
 
-    printf("  %02d:%02d \n", hora, minutos);
+    printf(" %02d:%02d \n", hora, minutos);
     return 0;
 }
-
-

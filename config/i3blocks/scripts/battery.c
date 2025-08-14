@@ -19,7 +19,7 @@ int main() {
     fscanf(archivoCapacidad, "%d", &capacidad);
     fscanf(archivoEstado, "%31s", estado);
     fclose(archivoCapacidad); fclose(archivoEstado);
-    ( strcmp(estado, "Charging") == 0 ) ? printf("  ⚡%d%% \n",capacidad) : printf("  %d%% \n", capacidad);
+    ( strcmp(estado, "Charging") == 0 ) ? printf("   %d%% \n",capacidad) : printf("  %d%% \n", capacidad);
 
 
     return 0;

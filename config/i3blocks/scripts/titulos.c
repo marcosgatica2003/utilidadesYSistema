@@ -26,7 +26,7 @@ int main() {
     const size_t totalLength = 200;
     size_t paddingLength = (len < totalLength) ? (totalLength - len) : 1;
 
-    printf("%s\n", windowTitle);
+    printf("%s \n", windowTitle);
     for (size_t i = 0; i < paddingLength; ++i) {
         putchar(' ');
     }
