@@ -1,26 +1,24 @@
 set $mod Mod4
 
-font pango:JetBrainsMono Nerd Font Bold 9
+font pango:monospace bold 9
 
 floating_modifier $mod
 
-bindsym $mod+Return exec st -e tmux
+bindsym $mod+Return exec /usr/local/bin/st -e /bin/tmux
 
 bindsym $mod+Shift+q kill
-
-bindsym $mod+d exec dmenu_run
+bindsym $mod+b bar mode toggle
+bindsym $mod+d exec /usr/local/bin/dmenu_run
 bindsym $mod+t exec $HOME/.config/rofi/temperaturas.sh
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-bindsym $mod+c exec $HOME/Repositorios/gaticonTools/capturadorDePantallas/capturarPantallaX11.sh
+bindsym $mod+c exec /home/marcosgatica/Repositorios/gaticonTools/capturadorDePantallas/gaticonCaptureX11.sh
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-bindsym $mod+f fullscreen toggle
 
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -29,11 +27,11 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -62,46 +60,48 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+gaps inner 6
+gaps outer 6
+
 bindsym $mod+r mode "resize"
+#                       border  background text  indicator
+client.focused          #cc241d #000000 #ebdbb2 #000000
+client.focused_inactive #000000 #000000 #a89984 #000000
+client.unfocused        #000000 #000000 #a89984 #000000
+client.urgent           #d79921 #000000 #000000 #d79921
+client.placeholder      #cc241d #000000 #000000 #cc241d
 
-client.focused #504945 #504945 #EBDBB2 #504945
-client.focused_inactive #282828 #282828 #373b41 #282828
-client.unfocused #282828 #282828 #EBDBB2 #282828
-client.urgent #f0c674 #f0c674 #000000 #f0c674
-client.placeholder #ff4040 #ff4040 #000000 #ff4040
-
-gaps inner 4
-gaps outer 4
-
-exec_always --no-startup-id feh --bg-scale $HOME/.variablesDeEntorno/wallpaper.jpg
-exec --no-startup-id i3blocks
-exec --no-startup-id dunst
-exec --no-startup-id kdeconnectd
-exec --no-startup-id brightnessctl set 40%
-exec --no-startup-id xset -dpms s off
+exec --no-startup-id /bin/i3blocks
+exec --no-startup-id /bin/dunst
+exec --no-startup-id /bin/brightnessctl set 40%
+exec --no-startup-id /bin/xset -dpms s off
+new_window normal
 
 for_window [class="^mpv$"] floating enable
-for_window [class=".*"] border pixel 2
 for_window [class="^feh$"] floating enable
 for_window [class="^MPlayer$"] floating enable pixel 3
 for_window [class="^matplotlib$"] floating enable
+for_window [class="^.*"] border normal 1
 
 bar {
         status_command i3blocks
         tray_padding 4
         modifier none
-        font pango:JetBrainsMono Nerd Font Bold 9
+        font pango:CaskaydiaCove Nerd Font Bold 9
         position top
+        hidden_state hide
+        mode hide
         colors {
-            background #282828
-            statusline #cdd6f4
-            separator  #585b70
+            background #000000
+            statusline #ebdbb2
+            separator  #000000
 
             #                  border      background   text
-            focused_workspace  #282828     #D5C4A1      #282828
-            active_workspace   #282828     #282828      #3C3836
-            inactive_workspace #282828     #282828      #A89984
-            urgent_workspace   #282828     #f0c674      #1e1e2e
-            binding_mode       #282828     #f9e2af      #1e1e2e
-        }
+            focused_workspace  #cc241d     #000000      #ebdbb2
+            active_workspace   #000000     #000000      #a89984
+            inactive_workspace #000000     #000000      #7c6f64
+            urgent_workspace   #d79921     #000000      #000000
+            binding_mode       #cc241d     #000000      #ebdbb2
+    }
+
 }
