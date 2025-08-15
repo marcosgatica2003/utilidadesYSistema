@@ -1,5 +1,7 @@
-set nonumber
 set background=dark
+set wildmenu
+set wildmode=longest:full,full
+set nonumber
 set spell spelllang=es
 set completeopt=menu,menuone,noselect
 set termguicolors
@@ -23,7 +25,6 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set laststatus=2
-set noshowmode
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set belloff+=ctrlg
