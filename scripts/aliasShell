@@ -1,7 +1,6 @@
 alias cls="cd $HOME >/dev/null && clear"
 alias clima="curl wttr.in/Córdoba_Argentina"
-alias vimrc="vim ~/.vimrc"
-alias descargarYT="python3 $HOME/gaticonTools/descargarYoutube/descargarYT.py"
+alias vimrc="vim ~/.vim/vimrc"
 alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
