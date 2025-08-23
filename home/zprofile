@@ -1,7 +1,7 @@
-#Esto ejecuta startx al toque dps de iniciar sesión desde tty
 if [[ -z $DISPLAY && $XDG_VTNR -eq 1 && $(tty) == /dev/tty1 ]]; then
-    source $HOME/.variablesDeEntorno/lsColors
+    if [ -f /home/marcosgatica/.zshrc ]; then
+        source /home/marcosgatica/.zshrc
+    fi
     export PATH=$PATH:/usr/local/go/bin
-    export PATH="$HOME/.local/bin:$PATH"
-    startx
+    /bin/startx
 fi
