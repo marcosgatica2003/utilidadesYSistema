@@ -106,7 +106,7 @@ function actualizarDiscordManual {
         wget -q --show-progress "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
         info "Instalando discord..."
         verificarPrivilegios
-        sudo apt install -y ./discord.deb
+        $PRIV apt install -y ./discord.deb
         cd "$cmdActual"
         rm -rf "$rutaTmp"
         ok "Discord actualizado!"
