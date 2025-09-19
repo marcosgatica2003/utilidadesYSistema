@@ -1,0 +1,105 @@
+\renewcommand{\theenumi}{\Roman{enumi}}
+\definecolor{gold}{rgb}{1.0, 0.84, 0.0}
+\newcommand{\resistencia}[4]{
+    \begin{minipage}{2cm}
+        \begin{center}
+            \begin{tikzpicture}
+                \draw(-0.4cm, -0.15cm) rectangle (0.4cm, 0.15cm);
+                \fill[resistor] (-0.4cm, 0) -- (-0.5cm, 0);
+                \draw (-0.4cm, 0) -- (-0.5cm, 0);
+                \draw (0.4cm, 0) -- (0.5cm, 0);
+                \fill[#1] (-0.35cm, -0.15cm) rectangle (-0.25cm, 0.15cm);
+                \fill[#2] (-0.15cm, -0.15cm) rectangle (-0.05cm, 0.15cm);
+                \fill[#3] (0.05cm, -0.15cm) rectangle (0.15cm, 0.15cm);
+                \fill[#4] (0.25cm, -0.15cm) rectangle (0.35cm, 0.15cm);
+            \end{tikzpicture}
+        \end{center}
+    \end{minipage}
+}
+\newcommand{\diodoSilicio}[1]{
+    \begin{minipage}{2cm}
+        \begin{center}
+            \begin{circuitikz}[scale=0.5]
+                \draw[line width=1pt] (-2,0) -- (-1,0);
+                \draw[line width=1pt] (2,0) -- (1,0);
+
+                \filldraw[fill=black!75, draw=black] (-1, -0.5) rectangle (1, 0.5);
+
+                \fill[gray!60] (0.6, -0.5) rectangle (0.8, 0.5);
+
+                \node at (0, -1) {\texttt{#1}};
+            \end{circuitikz}
+        \end{center}
+    \end{minipage}
+}
+\newcommand{\diodoGermanio}[1]{
+    \begin{minipage}{2cm} 
+        \begin{center}
+            \begin{circuitikz}[scale=0.5]
+                \draw[line width=0.8pt] (-2.5,0) -- (-1.5,0);
+                \draw[line width=0.8pt] (2.5,0) -- (1.5,0);
+
+                \filldraw[fill=white, draw=black] (-1.5, -0.4) rectangle (1.5, 0.4);
+                \fill[orange!80] (-1.5, -0.25) rectangle (1.5, 0.25);
+                \fill[gray!95] (1.2, -0.4) rectangle (1.5, 0.4);
+                \node at (0, -0.9) {\texttt{#1}};
+            \end{circuitikz}
+        \end{center}
+    \end{minipage}
+}
+\newcommand{\inv}[1]{\frac{1}{#1}}
+\newcommand{\recuadrar}[2]{
+    \begin{center}
+        \begin{tabular}{|m{#1}|}
+            \toprule
+            \multicolumn{1}{|c|}{\hspace{5pt}#2\hspace{5pt}} \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+}
+
+\newcommand{\ecuacion}[1]{
+    \begin{center}
+        $#1$
+    \end{center}
+}
+
+\newcommand{\saltoPag}[0]{%
+    \newpage\noindent\thispagestyle{fancy}%
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[line width=0.4pt, color=gray!50] (8.5cm, -0.4cm) -- (8.5cm, -24cm);
+    \end{tikzpicture}%
+    \ignorespaces{}
+}
+
+\newcommand{\midTitle}[2]{%
+    \begin{center}
+        \textcolor{#1}{\underline{#2}} 
+    \end{center}
+}
+
+\captionsetup{
+    format=hang,
+    labelfont={bf},
+    textfont=normalfont,
+    labelsep=colon,
+    justification=centering,
+    singlelinecheck=true
+}
+
+\newcommand{\imagen}[3][]{
+    \begin{center}
+        \begin{tikzpicture}
+            \node[inner sep=2pt] (image) {\includegraphics[width=#2]{#3}};
+            \draw[line width=1pt, color={rgb:red,251;green,73;blue,52}] (image.south west) rectangle (image.north east);
+        \end{tikzpicture}
+        \ifx\\#1\\
+            \captionof{figure}{}
+        \else
+            \captionof{figure}{#1}
+        \fi 
+        \label{fig:#2}
+    \end{center}
+}
+
+\newcommand{\sangria}[0]{\par\noindent\hspace*{15pt}}

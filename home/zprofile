@@ -3,5 +3,7 @@ if [[ -z $DISPLAY && $XDG_VTNR -eq 1 && $(tty) == /dev/tty1 ]]; then
         source /home/marcosgatica/.zshrc
     fi
     export PATH=$PATH:/usr/local/go/bin
+    export PATH=$PATH:/home/marcosgatica/.local/bin
+    export PATH=$PATH:/sbin
     /bin/startx
 fi

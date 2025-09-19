@@ -1,5 +1,5 @@
 [[ $- != *i* ]] && return
-
+alias nano='echo "Usa vim down"'
 [ -z "${PS1-}" ] && return
 
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -10,7 +10,7 @@ fi
 [ -f /home/marcosgatica/.config/utilidadesYSistema/scripts/aliasShell ] && source /home/marcosgatica/.config/utilidadesYSistema/scripts/aliasShell
 
 command_not_found_handler() {
-    echo "Eso no es así Rao"
+    echo "gaga"
     return 127
 }
 
@@ -26,6 +26,12 @@ gitDirty() {
     [[ -n $(/bin/git status --porcelain 2>/dev/null) ]] && echo "*"
 }
 
+getHostname() {
+   #hostnameValue=$(/usr/bin/hostname)
+   # [[ -n whoami == "root" ]] && hostnameValue="root"
+    echo "miniBestia"
+}
+
 RESET='%f%k%b'
 BOLD='%B'
 
@@ -37,7 +43,7 @@ BG_DARKGRAY='%K{black}'
 
 setopt PROMPT_SUBST
 PROMPT="${BOLD}
-${BG_DARKGRAY}${FG_LIGHTGRAY}[${FG_YELLOW}%~${FG_LIGHTGRAY}]${RESET}${FG_CYAN}[\$(gitBranch)${FG_RED}\$(gitDirty)${FG_CYAN}]${RESET}
+${BG_DARKGRAY}${FG_LIGHTGRAY}[${FG_YELLOW}%~${FG_LIGHTGRAY}]${RESET}${FG_CYAN}[\$(gitBranch)${FG_RED}\$(gitDirty)${FG_CYAN}]${RESET}${FG_RED}[$(getHostname)]${RESET}
 ${FG_LIGHTGRAY}↳ ${RESET}"
 
 setopt AUTO_MENU
@@ -47,6 +53,7 @@ setopt MENU_COMPLETE
 
 zmodload zsh/complist
 bindkey -M menuselect '^[[Z' reverse-menu-complete
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*'
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ''

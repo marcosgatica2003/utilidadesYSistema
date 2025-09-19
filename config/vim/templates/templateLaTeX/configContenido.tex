@@ -1,0 +1,33 @@
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\definecolor{textoGris}{HTML}{222222}
+
+\fancypagestyle{fancy}{
+    \fancyhf{}
+
+    \fancyfoot[R]{[Gatica M.] [\textbf{pág.\ \thepage} de \pageref{LastPage}]}
+
+    \fancyfoot[C]{
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[gray!30, line width=0.4pt]
+                (0cm, 1cm) -- (0cm, 25cm);
+        \end{tikzpicture}
+    }
+
+    \fancyhead[L]{
+        \begin{tabular}{@{}l@{}}
+            \raisebox{-0.5\height}{\includegraphics[height=0.60in]{./imagenes/logoDepartamentoElectronica.png}}
+            \begin{tabular}{@{}l@{}}
+                {\color{textoGris}\textbf{Departamento de Ingeniería Electrónica}} \\
+                {\color{textoGris}Facultad Regional Córdoba}
+            \end{tabular}
+        \end{tabular}
+    }
+}
+\titleformat{\section}[hang]{\fontsize{10}{12}\bfseries}{\thesection.}{0.5em}{\underline{#1}}
+\titleformat{\subsection}[hang]{\fontsize{10}{11}\bfseries}{\thesubsection.}{0.5em}{#1}
+\titleformat{\subsubsection}[hang]{\fontsize{10}{10}\itshape}{\thesubsubsection.}{0.5em}{#1}
+\widowpenalty=10000
+\clubpenalty=10000
+\enlargethispage{-1cm}
+
