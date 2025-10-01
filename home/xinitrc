@@ -1,5 +1,8 @@
-#!/bin/sh
+#!/bin/dash
 export QT_QPA_PLATFORMTHEME=qt5ct
+export XDG_CURRENT_DESKTOP=""
+export DE=""
 /usr/local/bin/dwmblocks &
 /bin/xset -dpms s off
+/bin/feh --bg-scale /home/marcosgatica/.wallpaper.jpeg
 exec dbus-run-session -- /usr/local/bin/dwm

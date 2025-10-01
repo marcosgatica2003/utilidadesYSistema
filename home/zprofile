@@ -5,5 +5,7 @@ if [[ -z $DISPLAY && $XDG_VTNR -eq 1 && $(tty) == /dev/tty1 ]]; then
     export PATH=$PATH:/usr/local/go/bin
     export PATH=$PATH:/home/marcosgatica/.local/bin
     export PATH=$PATH:/sbin
-    /bin/startx
+    export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+    /bin/startx &> /dev/null
 fi
