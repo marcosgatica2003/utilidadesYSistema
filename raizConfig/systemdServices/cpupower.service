@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cpupower frequency-set --governor powersave --min 400MHz --max 1.00GHz
+ExecStart=/usr/bin/cpupower frequency-set --governor powersave --min 2GHz --max 2GHz
 RemainAfterExit=true
 
 [Install]

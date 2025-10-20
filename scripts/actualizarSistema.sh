@@ -78,6 +78,17 @@ function actualizarAPT {
     $PRIV apt-get full-upgrade -y --autoremove
 }
 
+function actualizarEmerge {
+    ok "Usando emerge..."
+    info "Sincronizando con los repositorios de Gentoo"
+    verificarPrivilegios
+    $PRIV emerge --sync
+    info "Actualizando @world con binarios..."
+    $PRIV emerge --update --newuse --deep --getbinpkg --binpkg-respect-use=y @world
+    info "Limpiando..."
+    $PRIV emerge --depclean
+}
+
 function actualizarPacman {
     ok "Usando Pacman..."
     verificarPrivilegios
@@ -139,8 +150,10 @@ fi
 [[ $(command -v apt-get) ]] && actualizarAPT
 [[ $(command -v pacman) ]] && actualizarPacman
 [[ $(command -v yay) ]] && actualizarYay
+[[ $(command -v emerge) ]] && actualizarEmerge
 [[ $(command -v flatpak) ]] && actualizarFlatpak
 [[ $(command -v discord) && $(command -v apt-get) ]] && actualizarDiscordManual
+
 
 imprimirMensaje
 unset PRIV
