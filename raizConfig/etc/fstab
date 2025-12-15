@@ -1,22 +1,16 @@
-# Static information about the filesystems.
-# See fstab(5) for details.
-
-# <file system> <dir> <type> <options> <dump> <pass>
-# /dev/nvme0n1p2
-UUID=599084d1-ffe8-452f-bbbd-95abcf784a99	/         	ext4      	defaults,noatime,discard,barrier=0,commit=60,delalloc	0 1
-
-# /dev/nvme0n1p1
-UUID=DD3A-6806      	/boot     	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
-
-# /dev/nvme1n1p1
-UUID=24585b2c-25ed-4bc5-86b4-b81c71757af4       /home/marcosgatica/Unidades/ssd ext4 defaults,noatime,discard,barrier=0,commit=60,delalloc 0 2
-
-# ZRAM
-/dev/zram0 none swap pri=16383 0 0
-/dev/zram1 none swap pri=16383 0 0
-/dev/zram2 none swap pri=16383 0 0
-/dev/zram3 none swap pri=16383 0 0
-/dev/zram4 none swap pri=16383 0 0
-/dev/zram5 none swap pri=16383 0 0
-/dev/zram6 none swap pri=16383 0 0
-/dev/zram7 none swap pri=16383 0 0
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# systemd generates mount units based on this file, see systemd.mount(5).
+# Please run 'systemctl daemon-reload' after making changes here.
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/nvme0n1p2 during installation
+UUID=cadb6351-e818-4e5c-b170-dcd338673d18 /               btrfs   defaults,compress=zstd:3,ssd,noatime,space_cache=v2,commit=120,subvol=@rootfs 0       0
+# /boot/efi was on /dev/nvme0n1p1 during installation
+UUID=0788-FB8A  /boot/efi       vfat    umask=0077      0       1
+# /home was on /dev/nvme1n1p1 during installation
+UUID=3f2f0c0c-e8ee-42a7-ae71-b956744ca38b /home           btrfs   defaults,compress=zstd:3,ssd,noatime,commit=120,space_cache=v2        0       0
