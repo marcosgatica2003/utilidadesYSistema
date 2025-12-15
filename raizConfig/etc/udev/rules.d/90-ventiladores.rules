@@ -1,0 +1,6 @@
+# Creación de symlinks en /run para hwmon por name
+SUBSYSTEM=="hwmon", ACTION=="add|change", TEST=="name", ATTR{name}=="dell_smm", RUN+="/bin/sh -c 'ln -sf /sys/class/hwmon/%k /run/hwmon-dell'"
+SUBSYSTEM=="hwmon", ACTION=="add|change", TEST=="name", ATTR{name}=="k10temp", RUN+="/bin/sh -c 'ln -sf /sys/class/hwmon/%k /run/hwmon-k10temp'"
+# Limpieza al remover el dispositivo
+SUBSYSTEM=="hwmon", ACTION=="remove", TEST=="name", ATTR{name}=="dell_smm", RUN+="/bin/sh -c 'rm -f /run/hwmon-dell || true'"
+SUBSYSTEM=="hwmon", ACTION=="remove", TEST=="name", ATTR{name}=="k10temp", RUN+="/bin/sh -c 'rm -f /run/hwmon-k10temp || true'"
