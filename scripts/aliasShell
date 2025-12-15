@@ -5,11 +5,17 @@ alias templateLaTeX="cp -r $HOME/.vim/templates/templateLaTeX ."
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
 
-alias ll='ls -l --block-size=MB'
-alias la='ls -a'
-alias l='ls -cf'
-alias ls='ls --color=auto -h --group-directories-first'
-
+if command -v /usr/bin/lsd >/dev/null 2>&1; then
+    alias ll='/usr/bin/lsd -l'
+    alias la='/usr/bin/lsd -a'
+    alias l='/usr/bin/lsd -cf'
+    alias ls='/usr/bin/lsd -h --group-directories-first'
+else
+    alias ll='ls -l --block-size=MB'
+    alias la='ls -a'
+    alias l='ls -cf'
+    alias ls='ls --color=auto -h --group-directories-first'
+fi
 cd() {
     builtin cd "$@"
      ls --color=auto
