@@ -12,6 +12,5 @@ cd() {
      ls --color=auto
 }
 
-alias copiar='xclip -selection clipboard'
 alias gstatus='git status'
 alias gcommit='git commit -m'
