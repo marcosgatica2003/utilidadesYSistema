@@ -1,0 +1,24 @@
+[cursor]
+	style = { shape = "Block", blinking = "On" }
+	vi_mode_style = { shape = "Block", blinking = "Off" }
+
+[colors]
+	[colors.primary]
+		foreground = "#FFFFFF"
+		background = "#282828"
+
+[font]
+    normal = { family = "JetbrainsMono", style = "Normal" }
+    bold = { family = "JetbrainsMono", style = "Bold" }
+    italic = { family = "JetbrainsMono", style = "Italic" }
+    bold_italic = { family = "JetbrainsMono", style = "Bold Italic" }
+	size = 12
+
+[window]
+	padding = {x = 5, y = 5}
+	dynamic_padding = true
+    dynamic_title = true
+    blur = false
+    startup_mode = "Maximized"
+
+

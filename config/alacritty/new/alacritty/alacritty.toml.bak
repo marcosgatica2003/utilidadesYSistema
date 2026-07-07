@@ -1,0 +1,19 @@
+[cursor]
+	style = { shape = "Beam", blinking = "Off" }
+	vi_mode_style = { shape = "Beam", blinking = "Off" }
+
+[colors]
+	[colors.primary]
+		foreground = "#000000"
+		background = "#F0F0F0"
+
+
+[font]
+	size = 12.0
+
+[window]
+	opacity = 1
+	padding = {x = 5, y = 5}
+	dynamic_padding = true
+	decorations = "None"
+
