@@ -2,15 +2,33 @@ alias cls="cd $HOME >/dev/null && clear"
 alias vimrc="vim ~/.vim/vimrc"
 alias cd..2='cd ../../'
 alias cd..3='cd ../../../'
-
-alias ll='ls -l --block-size=MB'
-alias la='ls -a'
-alias l='ls -cf'
-alias ls='ls --color=auto -h --group-directories-first'
+alias clima="/bin/curl -4 wttr.in/Cordoba,Argentina"
+alias ll='/bin/ls -l --block-size=MB --color=auto'
+alias la='/bin/ls -a --color=auto -h'
+alias l='/bin/ls -cf --color=auto -h'
+alias ls='/bin/ls --color=auto -h -F --group-directories-first'
 cd() {
     builtin cd "$@"
-     ls --color=auto
+    /bin/ls --color=auto -h -F --group-directories-first
+}
+rm() {
+  /usr/bin/rm -v "$@"
 }
 
+mv() {
+  /usr/bin/mv -v "$@"
+}
+
+cp() {
+  /usr/bin/cp -v "$@"
+}
+
+chmod() {
+    /usr/bin/chmod -v "$@"
+}
+
+chown() {
+    /usr/bin/chown -v "$@"
+}
 alias gstatus='git status'
 alias gcommit='git commit -m'
